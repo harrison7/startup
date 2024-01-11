@@ -1,1 +1,1 @@
-This is a conflict test, I made a change
+This is a conflict test, I made another change
