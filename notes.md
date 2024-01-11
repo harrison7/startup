@@ -1,0 +1,2 @@
+# GitHub
+I learned how to commit, push, pull, and do version control with Git. In the markdown tutorial I learned a lot, I only used the basics before like making words **bold** or in *italics*, now I know a lot more techniques.
