@@ -6,7 +6,7 @@ Elementary is an extremely simple strategy game of obtaining and fusing elements
 
 ### Design
 
-![Drawing showing the design of the startup.](/assets/images/design.png)
+![Drawing showing the design of the startup.](/design.png)
 
 Here is a sequence diagram showing how the game would automatically interact with the backend to vote. 
 
@@ -31,4 +31,4 @@ I will use the required technologies in the following ways:
   - submitting high score at key points
 - **DB/Login** - Store users and high scores in database. Register and login users. Credentials securely stored in database. Can't play unless authenticated.
 - **WebSocket** - Each time a new heaviest element is reached, the leaderboard is updated for all players
-- **React** - Application ported to use the React web framework.
+- **React** - Application ported to use the React web framework. 
