@@ -8,7 +8,7 @@ Elementary is an extremely simple strategy game of obtaining and fusing elements
 
 ![Drawing showing the design of the startup.](/assets/images/design.png)
 
-Here is a sequence diagram showing how the game would automatically interact with the backend to vote.
+Here is a sequence diagram showing how the game would automatically interact with the backend to vote. 
 
 ![Drawing showing the design of how the backend works.](/assets/images/backend_design.png)
 
