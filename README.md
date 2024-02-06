@@ -33,7 +33,7 @@ I will use the required technologies in the following ways:
 - **WebSocket** - Each time a new heaviest element is reached, the leaderboard is updated for all players
 - **React** - Application ported to use the React web framework. 
 
-### HTML deliverable
+## HTML deliverable
 For this deliverable I built out the structure of my application using HTML.
 
 - **HTML pages** - There are three HTML pages: login, the game, and a guide
