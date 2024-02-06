@@ -32,3 +32,13 @@ I will use the required technologies in the following ways:
 - **DB/Login** - Store users and high scores in database. Register and login users. Credentials securely stored in database. Can't play unless authenticated.
 - **WebSocket** - Each time a new heaviest element is reached, the leaderboard is updated for all players
 - **React** - Application ported to use the React web framework. 
+
+### HTML deliverable
+For this deliverable I built out the structure of my application using HTML.
+
+- **HTML pages** - There are three HTML pages: login, the game, and a guide
+- **Links** - The login page automatically links to the game page. All pages have links to all other pages in the header.
+- **Text** - There is multiple text throughout the page, especially on the guide page.
+- **Images** - There are images in the guide page and the game page
+- **DB/Login** - There is an input box and submit button for login. The save data and leaderboard position for the game is saved on an account through the database
+- **WebSocket** - The leaderboards are updated in real time.
