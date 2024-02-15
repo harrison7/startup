@@ -1,3 +1,11 @@
 * {
     background-color: thistle;
 }
+
+main {
+    background-color: darkgrey;
+}
+
+aside {
+    background-color: lightslategrey;
+}
