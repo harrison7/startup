@@ -6,14 +6,6 @@
     <title>Elementary</title>
 
     <link rel="stylesheet" href="index.css" />
-
-    <!-- Include bootstrap CSS framework -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-      crossorigin="anonymous"
-    />
 </head>
 <body>
     <header>
@@ -26,31 +18,33 @@
                 </menu>
             </nav>
     </header>
-    <aside>
-        <h3>Leaderboard</h3>
-        <p>Joe <b>O (3)</b></p>
-        <p>Billy <b>Li</b></p>
-        <p>Bob <b>He</b></p>
-    </aside>
-    <main>
-        <h2>Login</h2>
-        <form action="play.html" method="get">
-            <div>
-                <label for="email">Enter your email: </label>
-                <input type="text" name="email" id="email" required />
-            </div>
-            <div>
-                <label for="pw">Enter your password: </label>
-                <input type="password" name="pw" id="pw" required />
-            </div>
-            <div>
-                <input type="submit" value="Log in" />
-            </div>
-        </form>
-        <p>Must enter a valid email (verified through Disify)</p>
-    </main>
-    <head>About the creator</head>
+    <div class="container">
+        <aside>
+            <h3>Leaderboard</h3>
+            <p>Joe <b class="element oxygen"> O </b> (3)</p>
+            <p>Billy <b class="element lithium"> Li </b></p>
+            <p>Bob <b class="element helium"> He </b></p>
+        </aside>
+        <main>
+            <h2>Login</h2>
+            <form action="play.html" method="get">
+                <div>
+                    <label for="email">Enter your email: </label>
+                    <input type="text" name="email" id="email" required />
+                </div>
+                <div>
+                    <label for="pw">Enter your password: </label>
+                    <input type="password" name="pw" id="pw" required />
+                </div>
+                <div>
+                    <input type="submit" value="Log in" />
+                </div>
+            </form>
+            <p>Must enter a valid email (verified through Disify)</p>
+        </main>
+    </div>
     <footer>
+        <p>About the creator</p>
         <p><a href="https://www.linkedin.com/in/harrison-casper-a945b32ab/">Harrison Casper</a></p>
         <p><a href="https://github.com/harrison7/startup">GitHub</a></p>
     </footer>

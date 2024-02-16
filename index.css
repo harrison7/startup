@@ -1,11 +1,69 @@
 * {
-    background-color: thistle;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+body {
+    background-color: white;
+    margin: 0;
+}
+
+header {
+    text-align: center;
+}
+
+.container {
+    display: flex;
+}
+
+aside {
+    flex: 1;
+    background-color: lightslategrey;
+    padding: 20px;
 }
 
 main {
     background-color: darkgrey;
+    padding: 20px;
+    flex: 3;
 }
 
-aside {
-    background-color: lightslategrey;
+.element {
+    border: 2px solid black;
+    margin: 2px;
+}
+
+.hydrogen {
+    background-color: yellow;
+}
+
+.helium {
+    background-color: orange;
+}
+
+.lithium {
+    background-color: cadetblue;
+}
+
+.beryllium {
+    background-color: lightslategray;
+}
+
+.boron {
+    background-color: coral;
+}
+
+.carbon {
+    background-color: gray;
+}
+
+.nitrogen {
+    background-color: lime;
+}
+
+.oxygen {
+    background-color: aqua;
+}
+
+footer {
+    text-align: center;
 }
