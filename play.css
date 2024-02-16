@@ -49,13 +49,14 @@ main {
     flex: 2;
 }
 
-.login {
-    margin: 10px;
-}
-
 .element {
     border: 2px solid black;
-    margin: 2px;
+    padding: 1px;
+}
+
+.big {
+    padding: 5px;
+    font-size: 40px;
 }
 
 .hydrogen {

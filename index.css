@@ -50,7 +50,7 @@ main {
 
 .element {
     border: 2px solid black;
-    margin: 2px;
+    padding: 1px;
 }
 
 .hydrogen {
