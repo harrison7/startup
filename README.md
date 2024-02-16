@@ -40,5 +40,7 @@ For this deliverable I built out the structure of my application using HTML.
 - **Links** - The login page automatically links to the game page. All pages have links to all other pages in the header.
 - **Text** - There is multiple text throughout the page, especially on the guide page.
 - **Images** - There are images in the guide page and the game page
+- **3rd party service** - Disify will verify that a valid email is used for login
 - **DB/Login** - There is an input box and submit button for login. The save data and leaderboard position for the game is saved on an account through the database
 - **WebSocket** - The leaderboards are updated in real time.
+

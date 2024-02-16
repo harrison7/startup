@@ -37,15 +37,23 @@ aside {
 }
 
 main {
-    background-color: darkgrey;
+    background-color: rgb(183, 222, 228);
     padding: 20px;
     margin: 5px;
     flex: 3;
     justify-content: center;
 }
 
-.login {
-    margin: 10px;
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-auto-rows: 300px;
+    grid-gap: 1em;
+}
+
+.gridunit {
+    padding: 20px;
+    text-align: center;
 }
 
 .element {
