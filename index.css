@@ -33,11 +33,13 @@ aside {
     flex: 1;
     background-color: lightslategrey;
     padding: 20px;
+    margin: 5px;
 }
 
 main {
     background-color: darkgrey;
     padding: 20px;
+    margin: 5px;
     flex: 3;
     justify-content: center;
 }
@@ -84,14 +86,15 @@ main {
 }
 
 footer {
-    flex: 0 80px;
+    flex: 0 50px;
     
     display: flex;
     flex-direction: row;
     justify-content: start;
     align-items: center;
+    padding: 10px;
 }
 
 div {
-    
+    padding: 10px;
 }
