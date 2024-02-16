@@ -37,11 +37,16 @@ aside {
 }
 
 main {
-    background-color: darkgrey;
+    background-color: rgb(228, 228, 228);
     padding: 20px;
     margin: 5px;
     flex: 3;
     justify-content: center;
+}
+
+.resources {
+    background-color: rgb(173, 189, 192);
+    flex: 2;
 }
 
 .login {
