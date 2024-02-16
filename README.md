@@ -44,3 +44,12 @@ For this deliverable I built out the structure of my application using HTML.
 - **DB/Login** - There is an input box and submit button for login. The save data and leaderboard position for the game is saved on an account through the database
 - **WebSocket** - The leaderboards are updated in real time.
 
+## CSS deliverable
+For this deliverable I styled my website by creating CSS stylesheets.
+
+- **Header, footer, and main content body** - Each element on every page has its own styling
+- **Navigation elements** - custom hyperlinks and border on nav element
+- **Window resizing** - works on all pages, most notably a grid on the guide page
+- **Elements** - Each part is separated and stands out. Custom icons created through CSS
+- **Text** - Consistent font family throughout website
+- **Images** - Images are integrated with website

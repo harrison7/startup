@@ -48,6 +48,20 @@ main {
     margin: 10px;
 }
 
+a {
+    text-decoration: none;
+    color: #0077cc;
+    padding: 10px;
+}
+
+a:visited {
+    color: #0077cc;
+}
+
+a:hover {
+    color: #ff6600;
+}
+
 .element {
     border: 2px solid black;
     padding: 1px;

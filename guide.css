@@ -22,6 +22,20 @@ nav {
     border-radius: 5px;
 }
 
+a {
+    text-decoration: none;
+    color: #0077cc;
+    padding: 10px;
+}
+
+a:visited {
+    color: #0077cc;
+}
+
+a:hover {
+    color: #ff6600;
+}
+
 .container {
     flex: 1;
     display: flex;
@@ -58,7 +72,7 @@ main {
 
 .element {
     border: 2px solid black;
-    margin: 2px;
+    padding: 1px;
 }
 
 .hydrogen {
