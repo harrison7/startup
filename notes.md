@@ -36,3 +36,17 @@ Git Bash has POSIX compliant tools to approximate Linux commands
 
 # HTML
 \<p> is paragraph, \<a> is hyperlink
+
+# CSS
+Put a style tag in a \<p> tag to color something
+The lowest-level style takes priority (cascading)
+Link a CSS sheet in header through \<link rel="stylesheet" href="styles.css" />
+You can reference: 
+tag {}
+.class {}
+tag.class {}
+#id {}
+tag[class=’classname’] {}
+section:hover {}
+For units you can %, px, units, relative to viewpoint, etc
+Putting all CSS in one file instead of inline in .html has its advantages and drawbacks
