@@ -35,4 +35,4 @@ AWS is like renting a mini computer for running our web server
 Git Bash has POSIX compliant tools to approximate Linux commands
 
 # HTML
-<p> is paragraph, <a> is hyperlink
+\<p> is paragraph, \<a> is hyperlink
