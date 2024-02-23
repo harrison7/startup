@@ -191,3 +191,21 @@ try {
 }
 To use this, function has to be called with async keyword
 You can then use await keyword to catch the returned promise
+
+Start an executable: chmod +x something.sh
+
+Subdomain: c260.cs.byu.edu. The first part makes it a subdomain
+
+Regex: i means not case sensitive, A|f means A or f, whole thing is /A|f/i
+
+/<div> means division
+
+DOM textContent sets the child text for an element
+
+{n:1}
+
+Valid JSON: {"x":3}
+
+CNAME is the record type to point to another DNS record, A maps it to IP address, TXT stores text on DNS
+
+Normal promise makes code after it execute, but await/async makes all following code in the "then" box
