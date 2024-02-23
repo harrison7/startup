@@ -198,7 +198,7 @@ Subdomain: c260.cs.byu.edu. The first part makes it a subdomain
 
 Regex: i means not case sensitive, A|f means A or f, whole thing is /A|f/i
 
-/<div> means division
+\<div> means division
 
 DOM textContent sets the child text for an element
 
