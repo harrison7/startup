@@ -1,4 +1,4 @@
-class Vial {
+class Flask {
 
 }
 
@@ -14,6 +14,7 @@ class Upgrade {
     }
 }
 
+
 class Game {
     elements;
     constructor() {
@@ -21,7 +22,28 @@ class Game {
         this.buttons = new Map();
     }
 
-    pressButton(button) {
-        
+    pressButton(buttonType) {
+        const button = this.buttons.get(buttonType);
+
+        if (button) {
+            button.addEventListener('click', () => {
+                // Call the logic you want to execute when the button is clicked
+                alert(`${buttonType} button clicked!`);
+            });
+        } else {
+            console.error(`Button with type ${buttonType} not found.`);
+        }
+    }
+
+    addButton(buttonType, buttonId) {
+        const buttonElement = document.getElementById(buttonId);
+
+        if (buttonElement) {
+            this.buttons.set(buttonType, buttonElement);
+        } else {
+            console.error(`Button element with id ${buttonId} not found.`);
+        }
     }
 }
+
+const game = new Game();
