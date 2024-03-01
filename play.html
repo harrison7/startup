@@ -26,7 +26,7 @@
         <main>
             <h2>Click to get matter</h2>
             <img src="assets/images/pexels-ivan-samkov-9629708.jpg" alt="flask" width="200" id="flask">
-            <p><button onclick="game.pressButton(this)">Create</button></p>
+            <p><button onclick="create()">Create</button></p>
             <p><button>Increase Hydrogen</button>10000 <b class="element helium">He</b></p>
             <p><button>Increase Helium</button>1000 <b class="element lithium">Li</b></p>
             <p><button>Increase Lithium</button>100 <b class="element beryllium">Be</b></p>
@@ -36,11 +36,11 @@
             <p><button>Increase Nitrogen</button>10 <b class="element oxygen">O</b></p>
         </main>
         <div class="resources">
-            <p><b class="element hydrogen big">H</b><b> Hydrogen:</b> 4096</p>
-            <p><b class="element helium big">He</b><b> Helium:</b> 512</p>
-            <p><b class="element lithium big">Li</b><b> Lithium:</b> 64</p>
-            <p><b class="element beryllium big">Be</b><b> Beryllium:</b> 8</p>
-            <p><b class="element boron big">B</b><b> Boron:</b> 1</p>
+            <p><b class="element hydrogen big">H</b><b> Hydrogen:</b> <span id="hydrogen">0</span></p>
+            <p><b class="element helium big">He</b><b> Helium:</b> <span id="helium">0</span></p>
+            <p><b class="element lithium big">Li</b><b> Lithium:</b> 0</p>
+            <p><b class="element beryllium big">Be</b><b> Beryllium:</b> 0</p>
+            <p><b class="element boron big">B</b><b> Boron:</b> 0</p>
             <p><b class="element carbon big">C</b><b> Carbon:</b> 0</p>
             <p><b class="element nitrogen big">N</b><b> Nitrogen:</b> 0</p>
             <p><b class="element oxygen big">O</b><b> Oxygen:</b> 0</p>
@@ -51,5 +51,6 @@
         <div><a href="https://www.linkedin.com/in/harrison-casper-a945b32ab/">Harrison Casper</a></div>
         <div><a href="https://github.com/harrison7/startup">GitHub</a></div>
     </footer>
+    <script src="play.js"></script>
 </body>
 </html>
