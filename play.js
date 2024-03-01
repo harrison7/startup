@@ -51,6 +51,7 @@
 let clicks = 0;
 let elements = [0, 0, 0, 0, 0, 0, 0, 0];
 let upgrades = [0, 0, 0, 0, 0, 0, 0];
+let upgradeCosts = [10, 10, 10, 10, 10, 10, 10];
 
 function create() {
     clicks += 1;
@@ -63,22 +64,22 @@ function updateElements() {
         elements[1] += (2 ** upgrades[1]);
     }
     if (clicks % 64 == 0) {
-        elements[1] += (2 ** upgrades[2]);
+        elements[2] += (2 ** upgrades[2]);
     }
     if (clicks % 512 == 0) {
-        elements[1] += (2 ** upgrades[3]);
+        elements[3] += (2 ** upgrades[3]);
     }
-    if (clicks % 8 == 0) {
-        elements[1] += (2 ** upgrades[4]);
+    if (clicks % 4096 == 0) {
+        elements[4] += (2 ** upgrades[4]);
     }
-    if (clicks % 8 == 0) {
-        elements[1] += (2 ** upgrades[5]);
+    if (clicks % 32768 == 0) {
+        elements[5] += (2 ** upgrades[5]);
     }
-    if (clicks % 8 == 0) {
-        elements[1] += (2 ** upgrades[6]);
+    if (clicks % 262144 == 0) {
+        elements[6] += (2 ** upgrades[6]);
     }
-    if (clicks % 8 == 0) {
-        elements[1] += (2 ** upgrades[7]);
+    if (clicks % 2097152 == 0) {
+        elements[7]++;
     }
 
     document.getElementById('hydrogen').textContent = elements[0];
@@ -92,5 +93,10 @@ function updateElements() {
 }
 
 function upgrade(index) {
-    upgrades[index]++;
+    if (elements[index + 1] >= (10 * (10 ** upgrades[index]))) {
+        upgrades[index]++;
+        upgradeCosts[index] *= 10;
+    } else {
+        alert("too expensive");
+    }
 }
