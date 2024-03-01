@@ -93,9 +93,17 @@ function updateElements() {
 }
 
 function upgrade(index) {
-    if (elements[index + 1] >= (10 * (10 ** upgrades[index]))) {
+    if (elements[index + 1] >= upgradeCosts[index]) {
         upgrades[index]++;
         upgradeCosts[index] *= 10;
+
+        document.getElementById('HUp').textContent = upgradeCosts[0];
+        document.getElementById('HeUp').textContent = upgradeCosts[1];
+        document.getElementById('LiUp').textContent = upgradeCosts[2];
+        document.getElementById('BeUp').textContent = upgradeCosts[3];
+        document.getElementById('BUp').textContent = upgradeCosts[4];
+        document.getElementById('CUp').textContent = upgradeCosts[5];
+        document.getElementById('NUp').textContent = upgradeCosts[6];
     } else {
         alert("too expensive");
     }
