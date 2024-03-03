@@ -55,7 +55,7 @@ For this deliverable I styled my website by creating CSS stylesheets.
 - **Images** - Images are integrated with website
 
 ## JavaScript deliverable
-For this deliverable I made my .
+For this deliverable I made my website interactable with JavaScript.
 
 - **JavaScript support for future login.** - The username is saved and displayed on the leaderboard
 - **JavaScript support for future database data** - User save data is saved in arrays and in an object
