@@ -52,6 +52,12 @@ let clicks = 0;
 let elements = [0, 0, 0, 0, 0, 0, 0, 0];
 let upgrades = [0, 0, 0, 0, 0, 0, 0];
 let upgradeCosts = [10, 10, 10, 10, 10, 10, 10];
+let alertIDs = ["Htxt", "Hetxt", "Litxt", "Betxt", "Btxt", "Ctxt", "Ntxt"];
+
+function combine(nums) {
+    let sum = nums.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    return sum;
+}
 
 function create() {
     clicks += 1;
@@ -60,25 +66,25 @@ function create() {
 
 function updateElements() {
     elements[0] += (2 ** upgrades[0]);
-    if (clicks % 8 == 0) {
+    if (clicks % (8 / (2 ** combine(upgrades))) == 0) {
         elements[1] += (2 ** upgrades[1]);
     }
-    if (clicks % 64 == 0) {
+    if (clicks % (64 / (2 ** combine(upgrades.slice(1, 7)))) == 0) {
         elements[2] += (2 ** upgrades[2]);
     }
-    if (clicks % 512 == 0) {
+    if (clicks % (512 / (2 ** combine(upgrades.slice(2, 7)))) == 0) {
         elements[3] += (2 ** upgrades[3]);
     }
-    if (clicks % 4096 == 0) {
+    if (clicks % (4096 / (2 ** combine(upgrades.slice(3, 7)))) == 0) {
         elements[4] += (2 ** upgrades[4]);
     }
-    if (clicks % 32768 == 0) {
+    if (clicks % (32768 / (2 ** combine(upgrades.slice(4, 7)))) == 0) {
         elements[5] += (2 ** upgrades[5]);
     }
-    if (clicks % 262144 == 0) {
+    if (clicks % (262144 / (2 ** combine(upgrades.slice(5, 7)))) == 0) {
         elements[6] += (2 ** upgrades[6]);
     }
-    if (clicks % 2097152 == 0) {
+    if (clicks % (2097152 / (2 ** upgrades[6])) == 0) {
         elements[7]++;
     }
 
@@ -92,9 +98,10 @@ function updateElements() {
     document.getElementById('oxygen').textContent = elements[7];
 }
 
-function upgrade(index) {
+async function upgrade(index) {
     if (elements[index + 1] >= upgradeCosts[index]) {
         upgrades[index]++;
+        elements[index + 1] -= upgradeCosts[index];
         upgradeCosts[index] *= 10;
 
         document.getElementById('HUp').textContent = upgradeCosts[0];
@@ -105,6 +112,13 @@ function upgrade(index) {
         document.getElementById('CUp').textContent = upgradeCosts[5];
         document.getElementById('NUp').textContent = upgradeCosts[6];
     } else {
-        alert("too expensive");
+        const text = document.getElementById(alertIDs[index]).textContent;
+        document.getElementById(alertIDs[index]).style.color = 'red';
+        document.getElementById(alertIDs[index]).textContent = "Too expensive";
+
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+        document.getElementById(alertIDs[index]).style.color = 'black';
+        document.getElementById(alertIDs[index]).textContent = text;
     }
 }
