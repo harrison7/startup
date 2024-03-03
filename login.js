@@ -1,3 +1,5 @@
+document.write('<script src="leaderboard.js"></script>');
+
 function login() {
     const nameEl = document.querySelector("#name");
     localStorage.setItem("userName", nameEl.value);
