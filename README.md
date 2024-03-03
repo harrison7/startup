@@ -53,3 +53,11 @@ For this deliverable I styled my website by creating CSS stylesheets.
 - **Elements** - Each part is separated and stands out. Custom icons created through CSS
 - **Text** - Consistent font family throughout website
 - **Images** - Images are integrated with website
+
+## JavaScript deliverable
+For this deliverable I made my .
+
+- **JavaScript support for future login.** - The username is saved and displayed on the leaderboard
+- **JavaScript support for future database data** - User save data is saved in arrays and in an object
+- **JavaScript support for future WebSocket** - The leaderboard has logic for updating once new scores are received from websocket.
+- **JavaScript support for your application's interaction logic** - The full game is now interactable and implemented
