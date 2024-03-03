@@ -58,6 +58,10 @@ main {
     justify-content: center;
 }
 
+li {
+    margin-bottom: 10px;
+}
+
 .resources {
     background-color: rgb(173, 189, 192);
     flex: 2;

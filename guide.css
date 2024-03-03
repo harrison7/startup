@@ -11,6 +11,10 @@ body {
     height: 100vh;
 }
 
+li {
+    margin-bottom: 10px;
+}
+
 header {
     flex: 0 100px;
 }
