@@ -49,6 +49,8 @@ function renderLeaderboard() {
     });
 }
 
+// add service
+
 function updateScores(newScores) {
     const existingScores = getScoresFromLocalStorage();
 
