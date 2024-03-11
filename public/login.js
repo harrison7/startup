@@ -35,6 +35,7 @@ async function loadScores() {
 }
 
 function renderLeaderboard(scoresData) {
+    //scoresData will come from endpoint
     const sortedScores = scoresData.sort((a, b) => b.score - a.score);
 
     const leaderboardList = document.getElementById("leaderboard-list");
@@ -67,10 +68,10 @@ function renderLeaderboard(scoresData) {
 
 // add service
 
-function updateScores(newScores) { //function for updating scores
+function updateScoresLocal(newScore) { //function for updating scores
     const existingScores = getScoresFromLocalStorage();
 
-    const updatedScores = [...existingScores, ...newScores];
+    const updatedScores = [...existingScores, ...newScore];
 
     saveScoresToLocalStorage(updatedScores);
     renderLeaderboard();
@@ -81,9 +82,8 @@ async function saveScore(score) {
     const mySave = newScores.find(obj => obj.name === localStorage.getItem("userName"));
     mySave.score = newScore;
     renderLeaderboard();
-    const userName = this.getPlayerName();
-    const date = new Date().toLocaleDateString();
-    const newScore = {name: userName, score: score, date: date};
+    const userName = localStorage.getItem('userName') ?? 'Mystery player';
+    const newScore = {name: userName, score: score};
 
     try {
       const response = await fetch('/api/score', {
@@ -97,7 +97,7 @@ async function saveScore(score) {
       localStorage.setItem('scores', JSON.stringify(scores));
     } catch {
       // If there was an error then just track scores locally
-      updateScores(newScore);
+      updateScoresLocal(newScore);
     }
 }
 
@@ -107,7 +107,7 @@ function login() {
     const nameEl = document.querySelector("#email");
     localStorage.setItem("userName", nameEl.value);
 
-    updateScores([{ name: localStorage.getItem("userName"), score: -7}]);
+    updateScores(-7);
 
     window.location.href = "play.html";
 }
