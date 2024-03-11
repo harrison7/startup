@@ -110,11 +110,7 @@ function updateElements() {
         newScore = elements[7];
     }
 
-    const newScores = getScoresFromLocalStorage();
-    const mySave = newScores.find(obj => obj.name === localStorage.getItem("userName"));
-    mySave.score = newScore;
-    saveScoresToLocalStorage(newScores);
-    renderLeaderboard();
+    saveScore();
 
     document.getElementById('hydrogen').textContent = elements[0];
     document.getElementById('helium').textContent = elements[1];
