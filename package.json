@@ -1,0 +1,15 @@
+{
+  "name": "startup",
+  "version": "1.0.0",
+  "description": "[Link to class notes](notes.md)\r # Elementary\r ## Specification Deliverable\r ### Elevator Pitch\r Elementary is an extremely simple strategy game of obtaining and fusing elements. You can fill out the periodic table and discover heavier and heavier elements. This website has a practical and educational use as well, containing a guidebook with information on each element in the periodic table. There is a leaderboard showing which user has discovered the heaviest element and how much of it.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.3"
+  }
+}
