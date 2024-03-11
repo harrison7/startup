@@ -1,5 +1,3 @@
-localStorage.setItem('scores', JSON.stringify(scoresData));
-
 function getScoresFromLocalStorage() {
     const storedScores = localStorage.getItem('scores');
     return storedScores ? JSON.parse(storedScores) : [];
@@ -10,12 +8,7 @@ function saveScoresToLocalStorage(scores) {
 }
 
 async function loadScores() {
-    let scores = [
-        { name: "Billy", score: -7 },
-        { name: "Bob", score: -6 },
-        { name: "Joe", score: -5 },
-        { name: "Man", score: 3 }
-    ];
+    let scores = [];
     try {
       // Get the latest high scores from the service
       const response = await fetch('/api/scores');
@@ -31,7 +24,7 @@ async function loadScores() {
       }
     }
   
-    renderLeaderboard(scoresData);
+    renderLeaderboard(scores);
 }
 
 function renderLeaderboard(scoresData) {
@@ -101,7 +94,7 @@ async function saveScore(score) {
     }
 }
 
-renderLeaderboard();
+loadScores();
 
 function login() {
     const nameEl = document.querySelector("#email");

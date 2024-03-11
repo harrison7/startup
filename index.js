@@ -41,3 +41,7 @@ let scores = [
     { name: "Man", score: 3 }
 ];
 //make updateScores function which returns scores
+function updateScores(newScore, scores) {
+    const updatedScores = [...scores, ...newScore];
+    return updatedScores;
+}
