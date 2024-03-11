@@ -51,7 +51,7 @@ function renderLeaderboard() {
 
 // add service
 
-function updateScores(newScores) {
+function updateScores(newScores) { //function for updating scores
     const existingScores = getScoresFromLocalStorage();
 
     const updatedScores = [...existingScores, ...newScores];
