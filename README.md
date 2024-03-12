@@ -40,7 +40,7 @@ For this deliverable I built out the structure of my application using HTML.
 - **Links** - The login page automatically links to the game page. All pages have links to all other pages in the header.
 - **Text** - There is multiple text throughout the page, especially on the guide page.
 - **Images** - There are images in the guide page and the game page
-- **3rd party service** - Disify will verify that a valid email is used for login
+- **3rd party service** - A random quote API will be used.
 - **DB/Login** - There is an input box and submit button for login. The save data and leaderboard position for the game is saved on an account through the database
 - **WebSocket** - The leaderboards are updated in real time.
 
@@ -67,6 +67,6 @@ For this deliverable I added backend endpoints that displays the scores of all u
 
 - **Create an HTTP service using Node.js and Express** - done
 - **Frontend served up using Express static middleware** - done
-- **Your frontend calls third party service endpoints** - Endpoints for Disify, which verifies that user has valid email
+- **Your frontend calls third party service endpoints** - Endpoints for quote generator, which generates a random profound quote
 - **Your backend provides service endpoints** - Placeholder for login where user is saved on server, endpoints for saving leaderboard
 - **Your frontend calls your service endpoints** - Done through fetch function
