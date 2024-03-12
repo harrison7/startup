@@ -43,6 +43,13 @@ let scores = [
 ];
 //make updateScores function which returns scores
 function updateScores(newScore, scores) {
-    const updatedScores = [...scores, newScore];
-    return updatedScores;
+    const index = scores.findIndex(score => score.name === newScore.name);
+
+    if (index !== -1) {
+        scores[index] = newScore;
+    } else {
+        scores.push(newScore);
+    }
+
+    return scores;
 }
