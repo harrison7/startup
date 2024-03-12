@@ -63,19 +63,19 @@ function updateScoresLocal(newScore) { //function for updating scores
     renderLeaderboard(updatedScores);
 }
 
-async function saveScore(score) {
+async function saveScore(scoreInput) {
     const storedScores = localStorage.getItem('scores');
     const newScores = storedScores ? JSON.parse(storedScores) : [];
-    const mySave = newScores.find(obj => obj.name === localStorage.getItem("userName"));
-    const userName = mySave.name;
-    const newScore = {name: userName, score: score};
-    mySave.score = newScore;
+    const userName = localStorage.getItem("userName");
+    const newScore = {name: userName, score: scoreInput};
+    //const mySave = newScores.find(obj => obj.name === userName);
+    //mySave.score = scoreInput;
 
     try {
       const response = await fetch('/api/score', {
         method: 'POST',
         headers: {'content-type': 'application/json'},
-        body: JSON.stringify(newScore),
+        body: JSON.stringify(mySave),
       });
 
       // Store what the service gave us as the high scores
@@ -83,7 +83,7 @@ async function saveScore(score) {
       localStorage.setItem('scores', JSON.stringify(scores));
     } catch {
       // If there was an error then just track scores locally
-      updateScoresLocal(newScore);
+      //updateScoresLocal(newScore);
     }
 }
 
