@@ -1,12 +1,3 @@
-function getScoresFromLocalStorage() {
-    const storedScores = localStorage.getItem('scores');
-    return storedScores ? JSON.parse(storedScores) : [];
-}
-
-function saveScoresToLocalStorage(scores) {
-    localStorage.setItem('scores', JSON.stringify(scores));
-}
-
 async function loadScores() {
     let scores = [];
     try {
@@ -62,21 +53,23 @@ function renderLeaderboard(scoresData) {
 // add service
 
 function updateScoresLocal(newScore) { //function for updating scores
-    const existingScores = getScoresFromLocalStorage();
+    const storedScores = localStorage.getItem('scores');
+    
+    const existingScores = storedScores ? JSON.parse(storedScores) : [];;
 
     const updatedScores = [...existingScores, ...newScore];
 
-    saveScoresToLocalStorage(updatedScores);
-    renderLeaderboard();
+    localStorage.setItem('scores', JSON.stringify(updatedScores));
+    renderLeaderboard(updatedScores);
 }
 
 async function saveScore(score) {
-    const newScores = getScoresFromLocalStorage();
+    const newScores = storedScores ? JSON.parse(storedScores) : [];;
     const mySave = newScores.find(obj => obj.name === localStorage.getItem("userName"));
-    mySave.score = newScore;
-    renderLeaderboard();
     const userName = localStorage.getItem('userName') ?? 'Mystery player';
     const newScore = {name: userName, score: score};
+    mySave.score = newScore;
+    renderLeaderboard(newScores);
 
     try {
       const response = await fetch('/api/score', {
@@ -100,7 +93,7 @@ function login() {
     const nameEl = document.querySelector("#email");
     localStorage.setItem("userName", nameEl.value);
 
-    updateScores(-7);
+    saveScore(-7);
 
     window.location.href = "play.html";
 }

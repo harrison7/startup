@@ -1,15 +1,25 @@
-function getScoresFromLocalStorage() {
-    const storedScores = localStorage.getItem('scores');
-    return storedScores ? JSON.parse(storedScores) : [];
+async function loadScores() {
+    let scores = [];
+    try {
+      // Get the latest high scores from the service
+      const response = await fetch('/api/scores');
+      scores = await response.json();
+  
+      // Save the scores in case we go offline in the future
+      localStorage.setItem('scores', JSON.stringify(scores));
+    } catch {
+      // If there was an error then just use the last saved scores
+      const scoresText = localStorage.getItem('scores');
+      if (scoresText) {
+        scores = JSON.parse(scoresText);
+      }
+    }
+  
+    renderLeaderboard(scores);
 }
 
-function saveScoresToLocalStorage(scores) {
-    localStorage.setItem('scores', JSON.stringify(scores));
-}
-
-function renderLeaderboard() {
-    const scoresData = getScoresFromLocalStorage();
-
+function renderLeaderboard(scoresData) {
+    //scoresData will come from endpoint
     const sortedScores = scoresData.sort((a, b) => b.score - a.score);
 
     const leaderboardList = document.getElementById("leaderboard-list");
@@ -40,13 +50,41 @@ function renderLeaderboard() {
     });
 }
 
-function updateScores(newScores) {
-    const existingScores = getScoresFromLocalStorage();
+// add service
 
-    const updatedScores = [...existingScores, ...newScores];
+function updateScoresLocal(newScore) { //function for updating scores
+    const storedScores = localStorage.getItem('scores');
+    
+    const existingScores = storedScores ? JSON.parse(storedScores) : [];;
 
-    saveScoresToLocalStorage(updatedScores);
-    renderLeaderboard();
+    const updatedScores = [...existingScores, ...newScore];
+
+    localStorage.setItem('scores', JSON.stringify(updatedScores));
+    renderLeaderboard(updatedScores);
 }
 
-renderLeaderboard();
+async function saveScore(score) {
+    const newScores = storedScores ? JSON.parse(storedScores) : [];;
+    const mySave = newScores.find(obj => obj.name === localStorage.getItem("userName"));
+    const userName = localStorage.getItem('userName') ?? 'Mystery player';
+    const newScore = {name: userName, score: score};
+    mySave.score = newScore;
+    renderLeaderboard(newScores);
+
+    try {
+      const response = await fetch('/api/score', {
+        method: 'POST',
+        headers: {'content-type': 'application/json'},
+        body: JSON.stringify(newScore),
+      });
+
+      // Store what the service gave us as the high scores
+      const scores = await response.json();
+      localStorage.setItem('scores', JSON.stringify(scores));
+    } catch {
+      // If there was an error then just track scores locally
+      updateScoresLocal(newScore);
+    }
+}
+
+loadScores();
