@@ -68,7 +68,7 @@ async function saveScore(scoreInput) {
     const newScores = storedScores ? JSON.parse(storedScores) : [];
     const userName = localStorage.getItem("userName");
     const newScore = {name: userName, score: scoreInput};
-    //const mySave = newScores.find(obj => obj.name === userName);
+    const mySave = newScores.find(obj => obj.name === userName);
     //mySave.score = scoreInput;
 
     try {
@@ -83,7 +83,7 @@ async function saveScore(scoreInput) {
       localStorage.setItem('scores', JSON.stringify(scores));
     } catch {
       // If there was an error then just track scores locally
-      //updateScoresLocal(newScore);
+      updateScoresLocal(newScore);
     }
 }
 
