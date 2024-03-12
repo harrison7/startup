@@ -23,6 +23,7 @@ apiRouter.get('/scores', (_req, res) => {
 apiRouter.post('/score', (req, res) => {
   scores = updateScores(req.body, scores);
   res.send(scores);
+  console.log("Hello, World!");
 });
 
 // Return the application's default page if the path is unknown
@@ -42,6 +43,6 @@ let scores = [
 ];
 //make updateScores function which returns scores
 function updateScores(newScore, scores) {
-    const updatedScores = [...scores, ...newScore];
+    const updatedScores = [...scores, newScore];
     return updatedScores;
 }
