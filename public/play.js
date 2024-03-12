@@ -75,7 +75,7 @@ async function saveScore(scoreInput) {
       const response = await fetch('/api/score', {
         method: 'POST',
         headers: {'content-type': 'application/json'},
-        body: JSON.stringify(mySave),
+        body: JSON.stringify(newScore),
       });
 
       // Store what the service gave us as the high scores

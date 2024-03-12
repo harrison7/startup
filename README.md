@@ -61,3 +61,12 @@ For this deliverable I made my website interactable with JavaScript.
 - **JavaScript support for future database data** - User save data is saved in arrays and in an object
 - **JavaScript support for future WebSocket** - The leaderboard has logic for updating once new scores are received from websocket.
 - **JavaScript support for your application's interaction logic** - The full game is now interactable and implemented
+
+## JavaScript deliverable
+For this deliverable I added backend endpoints that displays the scores of all users and saves the user's score to the leaderboard.
+
+- **Create an HTTP service using Node.js and Express** - done
+- **Frontend served up using Express static middleware** - done
+- **Your frontend calls third party service endpoints** - Endpoints for Disify, which verifies that user has valid email
+- **Your backend provides service endpoints** - Placeholder for login where user is saved on server, endpoints for saving leaderboard
+- **Your frontend calls your service endpoints** - Done through fetch function
