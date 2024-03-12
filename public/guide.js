@@ -88,3 +88,20 @@ async function saveScore(scoreInput) {
 }
 
 loadScores();
+
+function displayQuote(data) {
+    fetch('https://api.quotable.io/random')
+        .then((response) => response.json())
+        .then((data) => {
+            const containerEl = document.querySelector('#value');
+    
+            const quoteEl = document.createElement('p');
+            quoteEl.classList.add('value');
+    
+            quoteEl.textContent = data.content;
+    
+            containerEl.appendChild(quoteEl);
+    });
+}
+  
+displayQuote();

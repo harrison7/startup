@@ -175,6 +175,15 @@ async function upgrade(index) {
         document.getElementById('BUp').textContent = upgradeCosts[4];
         document.getElementById('CUp').textContent = upgradeCosts[5];
         document.getElementById('NUp').textContent = upgradeCosts[6];
+
+        document.getElementById('hydrogen').textContent = elements[0];
+        document.getElementById('helium').textContent = elements[1];
+        document.getElementById('lithium').textContent = elements[2];
+        document.getElementById('beryllium').textContent = elements[3];
+        document.getElementById('boron').textContent = elements[4];
+        document.getElementById('carbon').textContent = elements[5];
+        document.getElementById('nitrogen').textContent = elements[6];
+        document.getElementById('oxygen').textContent = elements[7];
     } else {
         const text = document.getElementById(alertIDs[index]).textContent;
         document.getElementById(alertIDs[index]).style.color = 'red';
