@@ -23,7 +23,7 @@ apiRouter.get('/scores', (_req, res) => {
 apiRouter.post('/score', (req, res) => {
   scores = updateScores(req.body, scores);
   res.send(scores);
-  console.log("Hello, World!");
+  //console.log("Hello, World!");
 });
 
 // Return the application's default page if the path is unknown
