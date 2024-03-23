@@ -89,15 +89,15 @@ async function saveScore(scoreInput) {
 
 loadScores();
 
-function login() {
-    const nameEl = document.querySelector("#email");
-    localStorage.setItem("userName", nameEl.value);
+// function login() {
+//     const nameEl = document.querySelector("#email");
+//     localStorage.setItem("userName", nameEl.value);
 
-    saveScore(-7);
-    loadScores();
+//     saveScore(-7);
+//     loadScores();
 
-    window.location.href = "play.html";
-}
+//     window.location.href = "play.html";
+// }
 
 async function login() {
     loginOrCreate(`/api/auth/login`);
@@ -108,8 +108,8 @@ async function register() {
 }
 
 async function loginOrCreate(endpoint) {
-    const userName = document.querySelector('#userName')?.value;
-    const password = document.querySelector('#userPassword')?.value;
+    const userName = document.querySelector('#email')?.value;
+    const password = document.querySelector('#pw')?.value;
     const response = await fetch(endpoint, {
         method: 'post',
         body: JSON.stringify({ email: userName, password: password }),
@@ -121,7 +121,8 @@ async function loginOrCreate(endpoint) {
     if (response.ok) {
         localStorage.setItem('userName', userName);
         window.location.href = 'play.html';
-    } else {
+    }
+    else {
         const body = await response.json();
         const modalEl = document.querySelector('#msgModal');
         modalEl.querySelector('.modal-body').textContent = `⚠ Error: ${body.msg}`;
