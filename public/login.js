@@ -121,7 +121,7 @@ async function register() {
     loginOrCreate(`/api/auth/create`, "register");
 }
 
-async function loginOrCreate(endpoint, type) {
+async function loginOrCreate(endpoint) {
     const userName = document.querySelector('#email')?.value;
     const password = document.querySelector('#pw')?.value;
     const response = await fetch(endpoint, {
@@ -143,14 +143,13 @@ async function loginOrCreate(endpoint, type) {
         // const msgModal = new bootstrap.Modal(modalEl, {});
         // msgModal.show();
 
-        const text = document.getElementById(type).textContent;
-        document.getElementById(type).style.color = 'red';
-        document.getElementById(type).textContent = `⚠ Error: ${body.msg}`;
+        document.getElementById("msg").style.color = 'dark-red';
+        document.getElementById("msg").textContent = `⚠ Error: ${body.msg}`;
 
         await new Promise(resolve => setTimeout(resolve, 1000));
 
-        document.getElementById(type).style.color = 'black';
-        document.getElementById(type).textContent = text;
+        document.getElementById("msg").style.color = 'black';
+        document.getElementById("msg").textContent = "Login";
     }
 }
 
