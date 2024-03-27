@@ -74,18 +74,18 @@ async function saveScore(scoreInput) {
     //mySave.score = scoreInput;
 
     try {
-      const response = await fetch('/api/score', {
-        method: 'POST',
-        headers: {'content-type': 'application/json'},
-        body: JSON.stringify(newScore),
-      });
+        const response = await fetch('/api/score', {
+            method: 'POST',
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify(newScore),
+        });
 
-      // Store what the service gave us as the high scores
-      const scores = await response.json();
-      localStorage.setItem('scores', JSON.stringify(scores));
+        // Store what the service gave us as the high scores
+        const scores = await response.json();
+        localStorage.setItem('scores', JSON.stringify(scores));
     } catch {
-      // If there was an error then just track scores locally
-      updateScoresLocal(newScore);
+        // If there was an error then just track scores locally
+        updateScoresLocal(newScore);
     }
 }
 
@@ -112,12 +112,12 @@ async function register() {
 (async () => {
     const userName = localStorage.getItem('userName');
     if (userName) {
-      document.querySelector('#playerName').textContent = userName;
-      setDisplay('loginControls', 'none');
-      setDisplay('playControls', 'block');
+        document.querySelector('#playerName').textContent = userName;
+        setDisplay('loginControls', 'none');
+        setDisplay('playControls', 'block');
     } else {
-      setDisplay('loginControls', 'block');
-      setDisplay('playControls', 'none');
+        setDisplay('loginControls', 'block');
+        setDisplay('playControls', 'none');
     }
 })();
 
