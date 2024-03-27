@@ -71,10 +71,27 @@ apiRouter.get('/user/:email', async (req, res) => {
 });
 
 // secureApiRouter verifies credentials for endpoints
+
+
+// GetScores
+apiRouter.get('/scores', (_req, res) => {
+  console.log("Fetching scores");
+  res.send(scores);
+});
+
+// SubmitScore
+apiRouter.post('/score', (req, res) => {
+  console.log("Posting scores");
+  scores = updateScores(req.body, scores);
+  res.send(scores);
+  //console.log("Hello, World!");
+});
+
 var secureApiRouter = express.Router();
 apiRouter.use(secureApiRouter);
 
 secureApiRouter.use(async (req, res, next) => {
+  console.log("Secure API router");
   authToken = req.cookies[authCookieName];
   const user = await DB.getUserByToken(authToken);
   if (user) {
@@ -82,18 +99,6 @@ secureApiRouter.use(async (req, res, next) => {
   } else {
     res.status(401).send({ msg: 'Unauthorized' });
   }
-});
-
-// GetScores
-apiRouter.get('/scores', (_req, res) => {
-  res.send(scores);
-});
-
-// SubmitScore
-apiRouter.post('/score', (req, res) => {
-  scores = updateScores(req.body, scores);
-  res.send(scores);
-  //console.log("Hello, World!");
 });
 
 // Return the application's default page if the path is unknown

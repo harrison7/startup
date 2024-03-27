@@ -1,4 +1,5 @@
 async function loadScores() {
+    console.log("Loading scores");
     let scores = [];
     try {
       // Get the latest high scores from the service
@@ -19,6 +20,7 @@ async function loadScores() {
 }
 
 function renderLeaderboard(scoresData) {
+    console.log("Rendering leaderboard");
     //scoresData will come from endpoint
     const sortedScores = scoresData.sort((a, b) => b.score - a.score);
 
