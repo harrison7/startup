@@ -79,14 +79,6 @@ apiRouter.get('/scores', (_req, res) => {
   res.send(scores);
 });
 
-// SubmitScore
-apiRouter.post('/score', (req, res) => {
-  console.log("Posting scores");
-  scores = updateScores(req.body, scores);
-  res.send(scores);
-  //console.log("Hello, World!");
-});
-
 var secureApiRouter = express.Router();
 apiRouter.use(secureApiRouter);
 
@@ -99,6 +91,14 @@ secureApiRouter.use(async (req, res, next) => {
   } else {
     res.status(401).send({ msg: 'Unauthorized' });
   }
+});
+
+// SubmitScore
+secureApiRouter.post('/score', (req, res) => {
+  console.log("Posting scores");
+  scores = updateScores(req.body, scores);
+  res.send(scores);
+  //console.log("Hello, World!");
 });
 
 // Return the application's default page if the path is unknown

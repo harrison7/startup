@@ -109,6 +109,18 @@ async function register() {
     loginOrCreate(`/api/auth/create`);
 }
 
+(async () => {
+    const userName = localStorage.getItem('userName');
+    if (userName) {
+      document.querySelector('#playerName').textContent = userName;
+      setDisplay('loginControls', 'none');
+      setDisplay('playControls', 'block');
+    } else {
+      setDisplay('loginControls', 'block');
+      setDisplay('playControls', 'none');
+    }
+})();
+
 async function loginOrCreate(endpoint) {
     const userName = document.querySelector('#email')?.value;
     const password = document.querySelector('#pw')?.value;
@@ -130,5 +142,34 @@ async function loginOrCreate(endpoint) {
         modalEl.querySelector('.modal-body').textContent = `⚠ Error: ${body.msg}`;
         const msgModal = new bootstrap.Modal(modalEl, {});
         msgModal.show();
+    }
+}
+
+function play() {
+    window.location.href = 'play.html';
+}
+  
+function logout() {
+    localStorage.removeItem('userName');
+    fetch(`/api/auth/logout`, {
+        method: 'delete',
+    }).then(() => (window.location.href = '/'));
+}
+  
+async function getUser(email) {
+    let scores = [];
+    // See if we have a user with the given email.
+    const response = await fetch(`/api/user/${email}`);
+    if (response.status === 200) {
+        return response.json();
+    }
+  
+    return null;
+}
+  
+function setDisplay(controlId, display) {
+    const playControlEl = document.querySelector(`#${controlId}`);
+    if (playControlEl) {
+        playControlEl.style.display = display;
     }
 }
