@@ -114,14 +114,14 @@ loadScores();
 })();
 
 async function login() {
-    loginOrCreate(`/api/auth/login`);
+    loginOrCreate(`/api/auth/login`, "login");
 }
   
 async function register() {
-    loginOrCreate(`/api/auth/create`);
+    loginOrCreate(`/api/auth/create`, "register");
 }
 
-async function loginOrCreate(endpoint) {
+async function loginOrCreate(endpoint, type) {
     const userName = document.querySelector('#email')?.value;
     const password = document.querySelector('#pw')?.value;
     const response = await fetch(endpoint, {
@@ -134,14 +134,23 @@ async function loginOrCreate(endpoint) {
   
     if (response.ok) {
         localStorage.setItem('userName', userName);
-        window.location.href = 'index.html';
+        window.location.href = 'play.html';
     }
     else {
         const body = await response.json();
-        const modalEl = document.querySelector('#msgModal');
-        modalEl.querySelector('.modal-body').textContent = `⚠ Error: ${body.msg}`;
-        const msgModal = new bootstrap.Modal(modalEl, {});
-        msgModal.show();
+        // const modalEl = document.querySelector('#msgModal');
+        // modalEl.querySelector('.modal-body').textContent = `⚠ Error: ${body.msg}`;
+        // const msgModal = new bootstrap.Modal(modalEl, {});
+        // msgModal.show();
+
+        const text = document.getElementById(type).textContent;
+        document.getElementById(type).style.color = 'red';
+        document.getElementById(type).textContent = `⚠ Error: ${body.msg}`;
+
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+        document.getElementById(type).style.color = 'black';
+        document.getElementById(type).textContent = text;
     }
 }
 
