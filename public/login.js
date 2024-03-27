@@ -101,14 +101,6 @@ loadScores();
 //     window.location.href = "play.html";
 // }
 
-async function login() {
-    loginOrCreate(`/api/auth/login`);
-}
-  
-async function register() {
-    loginOrCreate(`/api/auth/create`);
-}
-
 (async () => {
     const userName = localStorage.getItem('userName');
     if (userName) {
@@ -120,6 +112,14 @@ async function register() {
         setDisplay('playControls', 'none');
     }
 })();
+
+async function login() {
+    loginOrCreate(`/api/auth/login`);
+}
+  
+async function register() {
+    loginOrCreate(`/api/auth/create`);
+}
 
 async function loginOrCreate(endpoint) {
     const userName = document.querySelector('#email')?.value;
