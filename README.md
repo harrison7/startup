@@ -62,7 +62,7 @@ For this deliverable I made my website interactable with JavaScript.
 - **JavaScript support for future WebSocket** - The leaderboard has logic for updating once new scores are received from websocket.
 - **JavaScript support for your application's interaction logic** - The full game is now interactable and implemented
 
-## JavaScript deliverable
+## Service deliverable
 For this deliverable I added backend endpoints that displays the scores of all users and saves the user's score to the leaderboard.
 
 - **Create an HTTP service using Node.js and Express** - done
@@ -70,3 +70,12 @@ For this deliverable I added backend endpoints that displays the scores of all u
 - **Your frontend calls third party service endpoints** - Endpoints for quote generator, which generates a random profound quote
 - **Your backend provides service endpoints** - Placeholder for login where user is saved on server, endpoints for saving leaderboard
 - **Your frontend calls your service endpoints** - Done through fetch function
+
+## Login deliverable
+For this deliverable I added backend endpoints that displays the scores of all users and saves the user's score to the leaderboard.
+
+- **Supports new user registration** - done
+- **Supports existing user authentication** - When logged in, leaderboard position is saved.
+- **Stores application data in MongoDB** - Stores username and leaderboard position. Still need to figure out how to store game save.
+- **Stores and retrieves credentials in MongoDB** - done
+- **Restricts functionality** - Cannot submit a new score to the leaderboard if not logged in, endpoint requires authentication
