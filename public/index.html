@@ -12,7 +12,7 @@
         <h1>Elementary</h1>
         <nav>
             <a href="index.html">login</a>
-            <div id="playControls" style="display: none"></div>
+            <div id="playControls" style="display: none">
                 <a href="play.html">play</a>
                 <a href="guide.html">guide</a>
             </div>
@@ -25,7 +25,7 @@
         </aside>
         <main>
             <h2>Login</h2>
-            <div id="loginControls" style="display: none"></div>
+            <div id="loginControls" style="display: none">
                 <form action="play.html" method="get">
                     <div class="login">
                         <label for="email">Enter your email: </label>
@@ -36,9 +36,13 @@
                         <input type="password" name="pw" id="pw" required />
                     </div>
                     <div class="login">
-                        <input type="submit" value="Log in" onclick="login()"/>
+                        <input type="Login" value="Log in" onclick="login()"/>
+                        <input type="Register" value="Log in" onclick="register()"/>
                     </div>
                 </form>
+            </div>
+            <div id="loginControls" style="display: none">
+                <p>username</p>
             </div>
         </main>
     </div>
