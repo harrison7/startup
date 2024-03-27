@@ -134,7 +134,7 @@ async function loginOrCreate(endpoint) {
   
     if (response.ok) {
         localStorage.setItem('userName', userName);
-        window.location.href = 'play.html';
+        //window.location.href = 'play.html';
     }
     else {
         const body = await response.json();
