@@ -125,6 +125,8 @@ app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
+peerProxy(httpService);
+
 let scores = [
     { name: "Billy", score: -7 },
     { name: "Bob", score: -6 },
