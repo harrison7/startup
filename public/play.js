@@ -1,3 +1,5 @@
+const ScoreEvent = 'score';
+
 async function loadScores() {
     let scores = [];
     try {
@@ -81,6 +83,7 @@ async function saveScore(scoreInput) {
       // Store what the service gave us as the high scores
       const scores = await response.json();
       localStorage.setItem('scores', JSON.stringify(scores));
+      broadcastEvent(userName, GameEndEvent, newScore);
     } catch {
       // If there was an error then just track scores locally
       updateScoresLocal(newScore);
@@ -107,6 +110,15 @@ configureWebSocket() {
             this.displayMsg('player', msg.from, `started a new game`);
         }
     };
+}
+
+broadcastEvent(from, type, value) {
+    const event = {
+        from: from,
+        type: type,
+        value: value,
+    };
+    this.socket.send(JSON.stringify(event));
 }
 
 configureWebSocket();
