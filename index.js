@@ -121,7 +121,7 @@ function setAuthCookie(res, authToken) {
   });
 }
 
-app.listen(port, () => {
+const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
@@ -140,7 +140,7 @@ function updateScores(newScore, scores) {
     if (index !== -1) {
         scores[index] = newScore;
     } else {
-        scores.push(newScore);
+        scores.push(newScore);5
     }
 
     return scores;

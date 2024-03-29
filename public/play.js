@@ -99,7 +99,7 @@ let progress = [true, false, false, false, false, false, false, false];
 let upgradeCosts = [10, 10, 10, 10, 10, 10, 10];
 let alertIDs = ["Htxt", "Hetxt", "Litxt", "Betxt", "Btxt", "Ctxt", "Ntxt"];
 
-configureWebSocket() {
+function configureWebSocket() {
     const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
     let socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
     socket.onmessage = async (event) => {
@@ -110,7 +110,7 @@ configureWebSocket() {
     };
 }
 
-broadcastEvent(from, type, value) {
+function broadcastEvent(from, type, value) {
     const event = {
         from: from,
         type: type,
