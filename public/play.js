@@ -98,14 +98,8 @@ let alertIDs = ["Htxt", "Hetxt", "Litxt", "Betxt", "Btxt", "Ctxt", "Ntxt"];
 
 configureWebSocket() {
     const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-    this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
-    this.socket.onopen = (event) => {
-        this.displayMsg('system', 'game', 'connected');
-    };
-    this.socket.onclose = (event) => {
-        this.displayMsg('system', 'game', 'disconnected');
-    };
-    this.socket.onmessage = async (event) => {
+    let socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+    socket.onmessage = async (event) => {
         const msg = JSON.parse(await event.data.text());
         if (msg.type === GameEndEvent) {
             this.displayMsg('player', msg.from, `scored ${msg.value.score}`);
