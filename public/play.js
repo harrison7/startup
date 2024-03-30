@@ -85,7 +85,7 @@ async function saveScore(scoreInput) {
       localStorage.setItem('scores', JSON.stringify(scores));
       broadcastEvent(userName, ScoreEvent, {});
     } catch {
-      // If there was an error then just track scores locally
+      // If there was an error then just track scores locally 
       updateScoresLocal(newScore);
     }
 }
