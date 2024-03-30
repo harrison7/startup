@@ -72,10 +72,18 @@ For this deliverable I added backend endpoints that displays the scores of all u
 - **Your frontend calls your service endpoints** - Done through fetch function
 
 ## Login deliverable
-For this deliverable I added backend endpoints that displays the scores of all users and saves the user's score to the leaderboard.
+For this deliverable I added MongoDB functionality.
 
 - **Supports new user registration** - done
 - **Supports existing user authentication** - When logged in, leaderboard position is saved.
 - **Stores application data in MongoDB** - Stores username and leaderboard position. Still need to figure out how to store game save.
 - **Stores and retrieves credentials in MongoDB** - done
 - **Restricts functionality** - Cannot submit a new score to the leaderboard if not logged in, endpoint requires authentication
+
+## Websocket deliverable
+For this deliverable I added WebSocket functionality, allowing updates from other users in real time.
+
+- **Backend listens for WebSocket connection** - done
+- **Frontend makes WebSocket connection** - done
+- **Data sent over WebSocket connection** - done
+- **WebSocket data displayed** - The high score leaderboard updates in real time
