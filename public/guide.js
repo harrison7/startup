@@ -1,3 +1,5 @@
+const ScoreEvent = 'score';
+
 async function loadScores() {
     let scores = [];
     try {
@@ -81,6 +83,7 @@ async function saveScore(scoreInput) {
       // Store what the service gave us as the high scores
       const scores = await response.json();
       localStorage.setItem('scores', JSON.stringify(scores));
+      broadcastEvent(userName, ScoreEvent, socket);
     } catch {
       // If there was an error then just track scores locally
       updateScoresLocal(newScore);
@@ -88,6 +91,23 @@ async function saveScore(scoreInput) {
 }
 
 loadScores();
+
+const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+let socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+socket.onmessage = async (event) => {
+    const msg = JSON.parse(await event.data.text());
+    if (msg.type === ScoreEvent) {
+        loadScores();
+    }
+};
+
+function broadcastEvent(from, type, socket) {
+    const event = {
+        from: from,
+        type: type
+    };
+    socket.send(JSON.stringify(event));
+}
 
 function displayQuote(data) {
     fetch('https://api.quotable.io/random')
