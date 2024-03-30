@@ -1,6 +1,40 @@
 const ScoreEvent = 'score';
 
-async function loadScores() {
+function initializeLocalStorage() {
+    const defaultScores = [
+        { name: "Billy", score: -7 },
+        { name: "Bob", score: -6 },
+        { name: "Joe", score: -5 },
+        { name: "Man", score: 3 }
+    ];
+  
+    const defaultClicks = 0;
+    const defaultElements = [0, 0, 0, 0, 0, 0, 0, 0];
+    const defaultUpgrades = [0, 0, 0, 0, 0, 0, 0];
+    const defaultProgress = [true, false, false, false, false, false, false, false];
+    const defaultUpgradeCosts = [10, 10, 10, 10, 10, 10, 10];
+  
+    if (!localStorage.getItem('clicks')) {
+      localStorage.setItem('clicks', JSON.stringify(defaultClicks));
+    }
+    if (!localStorage.getItem('elements')) {
+        localStorage.setItem('elements', JSON.stringify(defaultElements));
+    }
+    if (!localStorage.getItem('upgrades')) {
+        localStorage.setItem('upgrades', JSON.stringify(defaultUpgrades));
+    }
+    if (!localStorage.getItem('progress')) {
+        localStorage.setItem('progress', JSON.stringify(defaultProgress));
+    }
+    if (!localStorage.getItem('upgradeCosts')) {
+        localStorage.setItem('upgradeCosts', JSON.stringify(defaultUpgradeCosts));
+    }
+  }
+  
+  // Call the initialization function when the application starts
+  initializeLocalStorage();
+
+async function loadScores(clicks, elements, upgrades, progress, upgradeCosts) {
     let scores = [];
     try {
       // Get the latest high scores from the service
@@ -17,12 +51,17 @@ async function loadScores() {
       }
     }
   
-    renderLeaderboard(scores);
+    renderLeaderboard(scores, clicks, elements, upgrades, progress, upgradeCosts);
 }
 
-function renderLeaderboard(scoresData) {
+function renderLeaderboard(scoresData, clicks, elements, upgrades, progress, upgradeCosts) {
     //scoresData will come from endpoint
-    const sortedScores = scoresData.sort((a, b) => b.score - a.score);
+    const sortedScores = scoresData.scores.sort((a, b) => b.score - a.score);
+    clicks = scoresData.clicks;
+    elements = scoresData.elements;
+    upgrades = scoresData.upgrades;
+    progress = scoresData.progress;
+    upgradeCosts = scoresData.upgradeCosts;
 
     const leaderboardList = document.getElementById("leaderboard-list");
 
@@ -69,8 +108,22 @@ async function saveScore(scoreInput, socket) {
     const storedScores = localStorage.getItem('scores');
     const newScores = storedScores ? JSON.parse(storedScores) : [];
     const userName = localStorage.getItem("userName");
-    const newScore = {name: userName, score: scoreInput};
-    const mySave = newScores.find(obj => obj.name === userName);
+    const clicks = JSON.parse(localStorage.getItem('clicks')) || 0;
+    const elements = JSON.parse(localStorage.getItem('elements')) || [0, 0, 0, 0, 0, 0, 0, 0];
+    const upgrades = JSON.parse(localStorage.getItem('upgrades')) || [0, 0, 0, 0, 0, 0, 0];
+    const progress = JSON.parse(localStorage.getItem('progress')) || [true, false, false, false, false, false, false, false];
+    const upgradeCosts = JSON.parse(localStorage.getItem('upgradeCosts')) || [10, 10, 10, 10, 10, 10, 10];
+
+    const newScore = {
+        name: userName,
+        score: scoreInput,
+        clicks: clicks,
+        elements: elements,
+        upgrades: upgrades,
+        progress: progress,
+        upgradeCosts: upgradeCosts
+    };
+    //const mySave = newScores.find(obj => obj.name === userName);
     //mySave.score = scoreInput;
 
     try {
@@ -88,9 +141,9 @@ async function saveScore(scoreInput, socket) {
       // If there was an error then just track scores locally 
       updateScoresLocal(newScore);
     }
-}
 
-loadScores();
+    return newScore;
+}
 
 let clicks = 0;
 let elements = [0, 0, 0, 0, 0, 0, 0, 0];
@@ -98,6 +151,34 @@ let upgrades = [0, 0, 0, 0, 0, 0, 0];
 let progress = [true, false, false, false, false, false, false, false];
 let upgradeCosts = [10, 10, 10, 10, 10, 10, 10];
 let alertIDs = ["Htxt", "Hetxt", "Litxt", "Betxt", "Btxt", "Ctxt", "Ntxt"];
+
+loadScores(clicks, elements, upgrades, progress, upgradeCosts);
+
+document.getElementById('hydrogen').textContent = elements[0];
+document.getElementById('helium').textContent = elements[1];
+document.getElementById('lithium').textContent = elements[2];
+document.getElementById('beryllium').textContent = elements[3];
+document.getElementById('boron').textContent = elements[4];
+document.getElementById('carbon').textContent = elements[5];
+document.getElementById('nitrogen').textContent = elements[6];
+document.getElementById('oxygen').textContent = elements[7];
+
+document.getElementById('HUp').textContent = upgradeCosts[0];
+document.getElementById('HeUp').textContent = upgradeCosts[1];
+document.getElementById('LiUp').textContent = upgradeCosts[2];
+document.getElementById('BeUp').textContent = upgradeCosts[3];
+document.getElementById('BUp').textContent = upgradeCosts[4];
+document.getElementById('CUp').textContent = upgradeCosts[5];
+document.getElementById('NUp').textContent = upgradeCosts[6];
+
+document.getElementById('hydrogen').textContent = elements[0];
+document.getElementById('helium').textContent = elements[1];
+document.getElementById('lithium').textContent = elements[2];
+document.getElementById('beryllium').textContent = elements[3];
+document.getElementById('boron').textContent = elements[4];
+document.getElementById('carbon').textContent = elements[5];
+document.getElementById('nitrogen').textContent = elements[6];
+document.getElementById('oxygen').textContent = elements[7];
 
 const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
 let socket = new WebSocket(`${protocol}://${window.location.host}/ws`);

@@ -75,9 +75,26 @@ apiRouter.get('/user/:email', async (req, res) => {
 
 
 // GetScores
-apiRouter.get('/scores', (_req, res) => {
+apiRouter.get('/scores', async (req, res) => {
   console.log("Fetching scores");
-  res.send(scores);
+  const user = await DB.getUser(req.params.email);
+    if (user) {
+    const userData = {
+        scores: scores,
+        elements: user.elements,
+        upgrades: user.upgrades,
+        progress: user.progress,
+        upgradeCosts: user.upgradeCosts
+    };
+    res.send(userData);
+  } else {
+    const userData = {
+      scores: scores
+  };
+    res.send(userData);
+  }
+
+    
 });
 
 var secureApiRouter = express.Router();
@@ -133,6 +150,8 @@ let scores = [
     { name: "Joe", score: -5 },
     { name: "Man", score: 3 }
 ];
+
+
 //make updateScores function which returns scores
 function updateScores(newScore, scores) {
     const index = scores.findIndex(score => score.name === newScore.name);
