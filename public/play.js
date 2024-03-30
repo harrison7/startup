@@ -59,13 +59,13 @@ function updateScoresLocal(newScore) { //function for updating scores
     
     const existingScores = storedScores ? JSON.parse(storedScores) : [];
 
-    const updatedScores = [...existingScores, ...newScore];
+    const updatedScores = [...existingScores, newScore];
 
     localStorage.setItem('scores', JSON.stringify(updatedScores));
     renderLeaderboard(updatedScores);
 }
 
-async function saveScore(scoreInput) {
+async function saveScore(scoreInput, socket) {
     const storedScores = localStorage.getItem('scores');
     const newScores = storedScores ? JSON.parse(storedScores) : [];
     const userName = localStorage.getItem("userName");
@@ -83,7 +83,7 @@ async function saveScore(scoreInput) {
       // Store what the service gave us as the high scores
       const scores = await response.json();
       localStorage.setItem('scores', JSON.stringify(scores));
-      broadcastEvent(userName, ScoreEvent, {});
+      broadcastEvent(userName, ScoreEvent, socket);
     } catch {
       // If there was an error then just track scores locally 
       updateScoresLocal(newScore);
@@ -99,27 +99,22 @@ let progress = [true, false, false, false, false, false, false, false];
 let upgradeCosts = [10, 10, 10, 10, 10, 10, 10];
 let alertIDs = ["Htxt", "Hetxt", "Litxt", "Betxt", "Btxt", "Ctxt", "Ntxt"];
 
-function configureWebSocket() {
-    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-    let socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
-    socket.onmessage = async (event) => {
-        const msg = JSON.parse(await event.data.text());
-        if (msg.type === ScoreEvent) {
-            loadScores();
-        }
-    };
-}
+const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+let socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+socket.onmessage = async (event) => {
+    const msg = JSON.parse(await event.data.text());
+    if (msg.type === ScoreEvent) {
+        loadScores();
+    }
+};
 
-function broadcastEvent(from, type, value) {
+function broadcastEvent(from, type, socket) {
     const event = {
         from: from,
-        type: type,
-        value: value,
+        type: type
     };
-    this.socket.send(JSON.stringify(event));
+    socket.send(JSON.stringify(event));
 }
-
-configureWebSocket();
 
 function combine(nums) {
     let sum = nums.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
@@ -174,7 +169,7 @@ function updateElements() {
     }
 
 
-    saveScore(newScore);
+    saveScore(newScore, socket);
     loadScores();
 
     document.getElementById('hydrogen').textContent = elements[0];

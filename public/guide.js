@@ -57,7 +57,7 @@ function updateScoresLocal(newScore) { //function for updating scores
     
     const existingScores = storedScores ? JSON.parse(storedScores) : [];
 
-    const updatedScores = [...existingScores, ...newScore];
+    const updatedScores = [...existingScores, newScore];
 
     localStorage.setItem('scores', JSON.stringify(updatedScores));
     renderLeaderboard(updatedScores);
