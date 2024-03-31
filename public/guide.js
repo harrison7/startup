@@ -113,10 +113,10 @@ function displayQuote(data) {
     fetch('https://api.quotable.io/random')
         .then((response) => response.json())
         .then((data) => {
-            const containerEl = document.querySelector('#value');
+            const containerEl = document.querySelector('#quote');
     
             const quoteEl = document.createElement('p');
-            quoteEl.classList.add('value');
+            quoteEl.classList.add('quote');
     
             quoteEl.textContent = data.content;
     
