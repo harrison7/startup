@@ -1,4 +1,5 @@
 const ScoreEvent = 'score';
+let userName = localStorage.getItem("userName");
 
 function initializeLocalStorage() {
     const defaultScores = [
@@ -34,7 +35,7 @@ function initializeLocalStorage() {
   // Call the initialization function when the application starts
   initializeLocalStorage();
 
-async function loadScores(clicks, elements, upgrades, progress, upgradeCosts) {
+async function loadScores() {
     let scores = [];
     try {
       // Get the latest high scores from the service
@@ -43,6 +44,11 @@ async function loadScores(clicks, elements, upgrades, progress, upgradeCosts) {
   
       // Save the scores in case we go offline in the future
       localStorage.setItem('scores', JSON.stringify(scores));
+      localStorage.setItem('clicks', JSON.stringify(clicks));
+        localStorage.setItem('elements', JSON.stringify(elements));
+        localStorage.setItem('upgrades', JSON.stringify(upgrades));
+        localStorage.setItem('progress', JSON.stringify(progress));
+        localStorage.setItem('upgradeCosts', JSON.stringify(upgradeCosts));
     } catch {
       // If there was an error then just use the last saved scores
       const scoresText = localStorage.getItem('scores');
@@ -51,18 +57,13 @@ async function loadScores(clicks, elements, upgrades, progress, upgradeCosts) {
       }
     }
   
-    renderLeaderboard(scores, clicks, elements, upgrades, progress, upgradeCosts);
+    return renderLeaderboard(scores);
 }
 
-function renderLeaderboard(scoresData, clicks, elements, upgrades, progress, upgradeCosts) {
+function renderLeaderboard(scoresData) {
     //scoresData will come from endpoint
     const sortedScores = scoresData.scores.sort((a, b) => b.score - a.score);
-    clicks = scoresData.clicks;
-    elements = scoresData.elements;
-    upgrades = scoresData.upgrades;
-    progress = scoresData.progress;
-    upgradeCosts = scoresData.upgradeCosts;
-
+    
     const leaderboardList = document.getElementById("leaderboard-list");
 
     leaderboardList.innerHTML = "";
@@ -89,6 +90,50 @@ function renderLeaderboard(scoresData, clicks, elements, upgrades, progress, upg
         
         leaderboardList.appendChild(listItem);
     });
+
+    let mySave = sortedScores.find(obj => obj.name === userName)
+    if (mySave) {
+        clicks = mySave.clicks;
+        elements = mySave.elements;
+        upgrades = mySave.upgrades;
+        progress = mySave.progress;
+        upgradeCosts = mySave.upgradeCosts;
+        document.getElementById('hydrogen').textContent = elements[0];
+        document.getElementById('helium').textContent = elements[1];
+        document.getElementById('lithium').textContent = elements[2];
+        document.getElementById('beryllium').textContent = elements[3];
+        document.getElementById('boron').textContent = elements[4];
+        document.getElementById('carbon').textContent = elements[5];
+        document.getElementById('nitrogen').textContent = elements[6];
+        document.getElementById('oxygen').textContent = elements[7];
+    
+        document.getElementById('HUp').textContent = upgradeCosts[0];
+        document.getElementById('HeUp').textContent = upgradeCosts[1];
+        document.getElementById('LiUp').textContent = upgradeCosts[2];
+        document.getElementById('BeUp').textContent = upgradeCosts[3];
+        document.getElementById('BUp').textContent = upgradeCosts[4];
+        document.getElementById('CUp').textContent = upgradeCosts[5];
+        document.getElementById('NUp').textContent = upgradeCosts[6];
+    
+        document.getElementById('hydrogen').textContent = elements[0];
+        document.getElementById('helium').textContent = elements[1];
+        document.getElementById('lithium').textContent = elements[2];
+        document.getElementById('beryllium').textContent = elements[3];
+        document.getElementById('boron').textContent = elements[4];
+        document.getElementById('carbon').textContent = elements[5];
+        document.getElementById('nitrogen').textContent = elements[6];
+        document.getElementById('oxygen').textContent = elements[7];
+        return mySave;
+    } else {
+        let newSave = {
+            clicks: 0,
+            elements: [0, 0, 0, 0, 0, 0, 0, 0],
+            upgrades: [0, 0, 0, 0, 0, 0, 0],
+            progress: [true, false, false, false, false, false, false, false],
+            upgradeCosts: [10, 10, 10, 10, 10, 10, 10]
+        }
+        return newSave;
+    }
 }
 
 // add service
@@ -104,25 +149,41 @@ function updateScoresLocal(newScore) { //function for updating scores
     renderLeaderboard(updatedScores);
 }
 
+let clicks = 0;
+let elements = [0, 0, 0, 0, 0, 0, 0, 0];
+let upgrades = [0, 0, 0, 0, 0, 0, 0];
+let progress = [true, false, false, false, false, false, false, false];
+let upgradeCosts = [10, 10, 10, 10, 10, 10, 10];
+let alertIDs = ["Htxt", "Hetxt", "Litxt", "Betxt", "Btxt", "Ctxt", "Ntxt"];
+
 async function saveScore(scoreInput, socket) {
     const storedScores = localStorage.getItem('scores');
     const newScores = storedScores ? JSON.parse(storedScores) : [];
-    const userName = localStorage.getItem("userName");
-    const clicks = JSON.parse(localStorage.getItem('clicks')) || 0;
-    const elements = JSON.parse(localStorage.getItem('elements')) || [0, 0, 0, 0, 0, 0, 0, 0];
-    const upgrades = JSON.parse(localStorage.getItem('upgrades')) || [0, 0, 0, 0, 0, 0, 0];
-    const progress = JSON.parse(localStorage.getItem('progress')) || [true, false, false, false, false, false, false, false];
-    const upgradeCosts = JSON.parse(localStorage.getItem('upgradeCosts')) || [10, 10, 10, 10, 10, 10, 10];
+    userName = localStorage.getItem("userName");
+
+    localStorage.setItem('clicks', JSON.stringify(clicks));
+    localStorage.setItem('elements', JSON.stringify(elements));
+    localStorage.setItem('upgrades', JSON.stringify(upgrades));
+    localStorage.setItem('progress', JSON.stringify(progress));
+    localStorage.setItem('upgradeCosts', JSON.stringify(upgradeCosts));
+
+    const _clicks = JSON.parse(localStorage.getItem("clicks")) || 0;
+    const _elements = JSON.parse(localStorage.getItem("elements")) || [0, 0, 0, 0, 0, 0, 0, 0];
+    const _upgrades = JSON.parse(localStorage.getItem("upgrades")) || [0, 0, 0, 0, 0, 0, 0];
+    const _progress = JSON.parse(localStorage.getItem("progress")) || [true, false, false, false, false, false, false, false];
+    const _upgradeCosts = JSON.parse(localStorage.getItem("upgradeCosts")) || [10, 10, 10, 10, 10, 10, 10];
 
     const newScore = {
         name: userName,
         score: scoreInput,
-        clicks: clicks,
-        elements: elements,
-        upgrades: upgrades,
-        progress: progress,
-        upgradeCosts: upgradeCosts
+        clicks: _clicks,
+        elements: _elements,
+        upgrades: _upgrades,
+        progress: _progress,
+        upgradeCosts: _upgradeCosts
     };
+
+    
     //const mySave = newScores.find(obj => obj.name === userName);
     //mySave.score = scoreInput;
 
@@ -135,7 +196,7 @@ async function saveScore(scoreInput, socket) {
 
       // Store what the service gave us as the high scores
       const scores = await response.json();
-      localStorage.setItem('scores', JSON.stringify(scores));
+      localStorage.setItem('scores', JSON.stringify(scores.scores));
       broadcastEvent(userName, ScoreEvent, socket);
     } catch {
       // If there was an error then just track scores locally 
@@ -145,40 +206,16 @@ async function saveScore(scoreInput, socket) {
     return newScore;
 }
 
-let clicks = 0;
-let elements = [0, 0, 0, 0, 0, 0, 0, 0];
-let upgrades = [0, 0, 0, 0, 0, 0, 0];
-let progress = [true, false, false, false, false, false, false, false];
-let upgradeCosts = [10, 10, 10, 10, 10, 10, 10];
-let alertIDs = ["Htxt", "Hetxt", "Litxt", "Betxt", "Btxt", "Ctxt", "Ntxt"];
 
-loadScores(clicks, elements, upgrades, progress, upgradeCosts);
+const mySave = loadScores();
 
-document.getElementById('hydrogen').textContent = elements[0];
-document.getElementById('helium').textContent = elements[1];
-document.getElementById('lithium').textContent = elements[2];
-document.getElementById('beryllium').textContent = elements[3];
-document.getElementById('boron').textContent = elements[4];
-document.getElementById('carbon').textContent = elements[5];
-document.getElementById('nitrogen').textContent = elements[6];
-document.getElementById('oxygen').textContent = elements[7];
-
-document.getElementById('HUp').textContent = upgradeCosts[0];
-document.getElementById('HeUp').textContent = upgradeCosts[1];
-document.getElementById('LiUp').textContent = upgradeCosts[2];
-document.getElementById('BeUp').textContent = upgradeCosts[3];
-document.getElementById('BUp').textContent = upgradeCosts[4];
-document.getElementById('CUp').textContent = upgradeCosts[5];
-document.getElementById('NUp').textContent = upgradeCosts[6];
-
-document.getElementById('hydrogen').textContent = elements[0];
-document.getElementById('helium').textContent = elements[1];
-document.getElementById('lithium').textContent = elements[2];
-document.getElementById('beryllium').textContent = elements[3];
-document.getElementById('boron').textContent = elements[4];
-document.getElementById('carbon').textContent = elements[5];
-document.getElementById('nitrogen').textContent = elements[6];
-document.getElementById('oxygen').textContent = elements[7];
+// if (mySave) {
+//     clicks = mySave.clicks;
+//     elements = mySave.elements;
+//     upgrades = mySave.upgrades;
+//     progress = mySave.progress;
+//     upgradeCosts = mySave.upgradeCosts;
+// }
 
 const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
 let socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
@@ -249,10 +286,11 @@ function updateElements() {
         newScore = elements[7];
     }
 
-
-    saveScore(newScore, socket);
-    loadScores();
-
+    if (clicks % 4 === 0) {
+        saveScore(newScore, socket);
+        loadScores();
+    }
+    
     document.getElementById('hydrogen').textContent = elements[0];
     document.getElementById('helium').textContent = elements[1];
     document.getElementById('lithium').textContent = elements[2];

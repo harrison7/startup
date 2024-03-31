@@ -90,7 +90,7 @@ apiRouter.get('/scores', async (req, res) => {
   } else {
     const userData = {
       scores: scores
-  };
+    };
     res.send(userData);
   }
 
