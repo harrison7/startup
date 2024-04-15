@@ -209,3 +209,18 @@ Valid JSON: {"x":3}
 CNAME is the record type to point to another DNS record, A maps it to IP address, TXT stores text on DNS
 
 Normal promise makes code after it execute, but await/async makes all following code in the "then" box
+
+#Final review:
+
+A linux daemon can start when a computer is rebooted, executes independent of a user, and can fork other processes. PM2 is an example of a daemon
+
+Hashing stored passwords is important to imporve security
+
+HTTP code 100 is informational, 200 means success, 300 means redirect, 400 means client error, 500 is server error
+
+Running npm install ws adds ws source code, adds dependency to package.json, and locks version of ws package for the app
+
+Port 80 is reserved for HTTP, 443 for HTTPS, 22 for SSH
+
+Standard HTTP headers: content-type, host, cookie
+
