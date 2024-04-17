@@ -1,0 +1,118 @@
+* {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+body {
+    text-align: center;
+    background-color: white;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    flex: 0 100px;
+}
+
+nav {
+    padding: 10px;
+    margin: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+
+aside {
+    text-align: left;
+    flex: 1;
+    background-color: lightslategrey;
+    padding: 20px;
+    margin: 5px;
+}
+
+main {
+    background-color: darkgrey;
+    padding: 20px;
+    margin: 5px;
+    flex: 3;
+    justify-content: center;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+.login {
+    margin: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #0077cc;
+    padding: 10px;
+}
+
+a:visited {
+    color: #0077cc;
+}
+
+a:hover {
+    color: #ff6600;
+}
+
+.element {
+    border: 2px solid black;
+    padding: 1px;
+}
+
+.hydrogen {
+    background-color: yellow;
+}
+
+.helium {
+    background-color: orange;
+}
+
+.lithium {
+    background-color: cadetblue;
+}
+
+.beryllium {
+    background-color: lightslategray;
+}
+
+.boron {
+    background-color: coral;
+}
+
+.carbon {
+    background-color: gray;
+}
+
+.nitrogen {
+    background-color: lime;
+}
+
+.oxygen {
+    background-color: aqua;
+}
+
+footer {
+    flex: 0 50px;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    padding: 10px;
+}
+
+div {
+    padding: 10px;
+}

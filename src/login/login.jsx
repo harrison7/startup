@@ -2,32 +2,6 @@ import React from 'react';
 
 import './main.css';
 
-const [scores, setScores] = React.useState([]);
-
-React.useEffect(() => {
-  fetch('/api/scores')
-    .then((response) => response.json())
-    .then((scores) => {
-      setScores(scores);
-      localStorage.setItem('scores', JSON.stringify(scores));
-    })
-    .catch(() => {
-      const scoresText = localStorage.getItem('scores');
-      if (scoresText) {
-        setScores(JSON.parse(scoresText));
-      }
-    });
-}, []);
-
-const scoreRows = [];
-const sortedScores = scoresData.scores.sort((a, b) => b.score - a.score);
-sortedScores.forEach((score, index) => {
-    scoreRows.push(
-        <li>{score.name} <b class="element hydrogen">H</b></li>
-    );
-});
-  
-
     // const leaderboardList = document.getElementById("leaderboard-list");
 
     // leaderboardList.innerHTML = "";
@@ -56,32 +30,84 @@ sortedScores.forEach((score, index) => {
     // });
 
 export function Login() {
+    const [scores, setScores] = React.useState();
+
+    React.useEffect(() => {
+    fetch('/api/scores')
+        .then((response) => response.json())
+        .then((scores) => {
+        setScores(scores);
+        localStorage.setItem('scores', JSON.stringify(scores));
+        })
+        .catch(() => {
+        const scoresText = localStorage.getItem('scores');
+        if (scoresText) {
+            setScores(JSON.parse(scoresText));
+        }
+        });
+    }, []);
+
+    const placeholderScores = [
+        { name: "Billy", score: -7 },
+        { name: "Bob", score: -6 },
+        { name: "Joe", score: -5 },
+        { name: "Man", score: 3 }
+    ];
+    const scoreRows = [];
+    let sortedScores;
+    if (typeof scores !== 'undefined' && typeof scores.scores !== 'undefined') {
+        sortedScores = scores.scores.sort((a, b) => b.score - a.score);
+    }
+    else {
+        sortedScores = [];
+    }
+    sortedScores.forEach((score, index) => {
+        
+        if (score.score === -7) {
+            scoreRows.push(<li>{score.name} <b className="element hydrogen">H</b></li>);
+        } else if (score.score === -6) {
+            scoreRows.push(<li>{score.name} <b className="element helium">He</b></li>);
+        } else if (score.score === -5) {
+            scoreRows.push(<li>{score.name} <b className="element lithium">Li</b></li>);
+        } else if (score.score === -4) {
+            scoreRows.push(<li>{score.name} <b className="element beryllium">Be</b></li>);
+        } else if (score.score === -3) {
+            scoreRows.push(<li>{score.name} <b className="element boron">B</b></li>);
+        } else if (score.score === -2) {
+            scoreRows.push(<li>{score.name} <b className="element carbon">C</b></li>);
+        } else if (score.score === -1) {
+            scoreRows.push(<li>{score.name} <b className="element nitrogen">N</b></li>);
+        } else {
+            scoreRows.push(<li>{score.name} <b className="element oxygen">O</b> {score.score}</li>);
+        }
+    });
+
   return (
-    <div class="container">
+    <div className="container">
         <aside>
             <h3>Leaderboard</h3>
             <ol id="leaderboard-list">{scoreRows}</ol>
         </aside>
         <main>
             <h2 id="msg">Login</h2>
-            <div id="loginControls" style="display: none">
-                <div class="login">
-                    <label for="email">Enter your email: </label>
+            <div id="loginControls">
+                <div className="login">
+                    <label htmlFor="email">Enter your email: </label>
                     <input type="text" name="email" id="email" required />
                 </div>
-                <div class="login">
-                    <label for="pw">Enter your password: </label>
+                <div className="login">
+                    <label htmlFor="pw">Enter your password: </label>
                     <input type="password" name="pw" id="pw" required />
                 </div>
-                <div class="login">
-                    <input type="submit" value="Log in" onclick="login()"/>
-                    <input type="submit" value="Register" onclick="register()"/>
+                <div className="login">
+                    <input type="submit" value="Log in" onClick={() => login()}/>
+                    <input type="submit" value="Register" onClick={() => register()}/>
                 </div>
             </div>
-            <div id="playControls" style="display: none">
+            <div id="playControls">
                 <div id="playerName"></div>
-                <button type="button" onclick="play()">Play</button>
-                <button type="button" onclick="logout()">Logout</button>
+                <button type="button" onClick={() => navigate('/play')}>Play</button>
+                <button type="button" onClick={() => logout()}>Logout</button>
             </div>
         </main>
     </div>
