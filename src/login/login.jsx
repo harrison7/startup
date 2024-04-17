@@ -1,6 +1,9 @@
 import React from 'react';
 
 import './main.css';
+import { Unauthenticated } from './unauthenticated';
+import { Authenticated } from './authenticated';
+import { AuthState } from './authState';
 
     // const leaderboardList = document.getElementById("leaderboard-list");
 
@@ -29,7 +32,7 @@ import './main.css';
     //     leaderboardList.appendChild(listItem);
     // });
 
-export function Login() {
+export function Login({ userName, authState, onAuthChange }) {
     const [scores, setScores] = React.useState();
 
     React.useEffect(() => {
@@ -89,20 +92,19 @@ export function Login() {
             <ol id="leaderboard-list">{scoreRows}</ol>
         </aside>
         <main>
-            <h2 id="msg">Login</h2>
-            <div id="loginControls">
-                <div className="login">
-                    <label htmlFor="email">Enter your email: </label>
-                    <input type="text" name="email" id="email" required />
-                </div>
-                <div className="login">
-                    <label htmlFor="pw">Enter your password: </label>
-                    <input type="password" name="pw" id="pw" required />
-                </div>
-                <div className="login">
-                    <input type="submit" value="Log in" onClick={() => login()}/>
-                    <input type="submit" value="Register" onClick={() => register()}/>
-                </div>
+            <div>
+                {authState !== AuthState.Unknown && <h1>Welcome to Simon</h1>}
+                {authState === AuthState.Authenticated && (
+                <Authenticated userName={userName} onLogout={() => onAuthChange(userName, AuthState.Unauthenticated)} />
+                )}
+                {authState === AuthState.Unauthenticated && (
+                <Unauthenticated
+                    userName={userName}
+                    onLogin={(loginUserName) => {
+                    onAuthChange(loginUserName, AuthState.Authenticated);
+                    }}
+                />
+                )}
             </div>
             <div id="playControls">
                 <div id="playerName"></div>
