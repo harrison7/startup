@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './main.css';
+
 const [scores, setScores] = React.useState([]);
 
 React.useEffect(() => {
@@ -18,31 +20,47 @@ React.useEffect(() => {
 }, []);
 
 const scoreRows = [];
-  if (scores.length) {
-    for (const [i, score] of scores.entries()) {
-      scoreRows.push(
-        <tr key={i}>
-          <td>{i}</td>
-          <td>{score.name.split('@')[0]}</td>
-          <td>{score.score}</td>
-          <td>{score.date}</td>
-        </tr>
-      );
-    }
-  } else {
+const sortedScores = scoresData.scores.sort((a, b) => b.score - a.score);
+sortedScores.forEach((score, index) => {
     scoreRows.push(
-      <tr key='0'>
-        <td colSpan='4'>Be the first to score</td>
-      </tr>
+        <li>{score.name} <b class="element hydrogen">H</b></li>
     );
-  }
+});
+  
+
+    // const leaderboardList = document.getElementById("leaderboard-list");
+
+    // leaderboardList.innerHTML = "";
+
+    // sortedScores.forEach((score, index) => {
+    //     const listItem = document.createElement("li");
+    //     if (score.score === -7) {
+    //         listItem.innerHTML = `${score.name} <b class="element hydrogen">H</b>`;
+    //     } else if (score.score === -6) {
+    //         listItem.innerHTML = `${score.name} <b class="element helium">He</b>`;
+    //     } else if (score.score === -5) {
+    //         listItem.innerHTML = `${score.name} <b class="element lithium">Li</b>`;
+    //     } else if (score.score === -4) {
+    //         listItem.innerHTML = `${score.name} <b class="element beryllium">Be</b>`;
+    //     } else if (score.score === -3) {
+    //         listItem.innerHTML = `${score.name} <b class="element boron">B</b>`;
+    //     } else if (score.score === -2) {
+    //         listItem.innerHTML = `${score.name} <b class="element carbon">C</b>`;
+    //     } else if (score.score === -1) {
+    //         listItem.innerHTML = `${score.name} <b class="element nitrogen">N</b>`;
+    //     } else {
+    //         listItem.innerHTML = `${score.name} <b class="element oxygen">O</b> (${score.score})`;
+    //     }
+        
+    //     leaderboardList.appendChild(listItem);
+    // });
 
 export function Login() {
   return (
     <div class="container">
         <aside>
             <h3>Leaderboard</h3>
-            <ol id="leaderboard-list"></ol>
+            <ol id="leaderboard-list">{scoreRows}</ol>
         </aside>
         <main>
             <h2 id="msg">Login</h2>
