@@ -390,7 +390,7 @@ function updateScoresLocal(newScore) { //function for updating scores
         </aside>
         <main>
             <h2>Click to get matter</h2>
-            <img src="../dist/assets/images/pexels-ivan-samkov-9629708.jpg" alt="flask" width="200" id="flask" />
+            <img src="../../dist/assets/images/pexels-ivan-samkov-9629708.jpg" alt="flask" width="200" id="flask" />
             <p><button onClick={() => create()}>Create</button></p>
             <p><button onClick={() => upgrade(0)}><span id="Htxt">Increase Hydrogen</span></button><span id="HUp">{upgradeCosts[0]}</span> <b className="element helium">He</b></p>
             <p><button onClick={() => upgrade(1)}><span id="Hetxt">Increase Helium</span></button><span id="HeUp">{upgradeCosts[1]}</span> <b className="element lithium">Li</b></p>

@@ -64,35 +64,35 @@ export function Guide() {
             <div className="grid">
                 <div className="gridunit">
                     <p><b>Hydrogen:</b> the smallest element</p>
-                    <img src="../dist/assets/images/pexels-jeremy-müller-10980177.jpg" alt="Galaxy" width="200" />
+                    <img src="../../dist/assets/images/pexels-jeremy-müller-10980177.jpg" alt="Galaxy" width="200" />
                 </div>
                 <div className="gridunit">
                     <p><b>Helium:</b> inflate your balloons</p>
-                    <img src="../dist/assets/images/pexels-padli-pradana-772478.jpg" alt="Balloons" width="200" />
+                    <img src="../../dist/assets/images/pexels-padli-pradana-772478.jpg" alt="Balloons" width="200" />
                 </div>
                 <div className="gridunit">
                     <p><b>Lithium:</b> the lightest metal</p>
-                    <img src="../dist/assets/images/istockphoto-480228230-612x612.jpg" alt="Flask" width="200" />
+                    <img src="../../dist/assets/images/istockphoto-480228230-612x612.jpg" alt="Flask" width="200" />
                 </div>
                 <div className="gridunit">
                     <p><b>Beryllium:</b> curiously rare</p>
-                    <img src="../dist/assets/images/istockphoto-1638256792-612x612.jpg" alt="Flask" width="200" />
+                    <img src="../../dist/assets/images/istockphoto-1638256792-612x612.jpg" alt="Flask" width="200" />
                 </div>
                 <div className="gridunit">
                     <p><b>Boron:</b> not as boring as its name suggests</p>
-                    <img src="../dist/assets/images/istockphoto-1485233006-612x612.jpg" alt="Flask" width="200" />
+                    <img src="../../dist/assets/images/istockphoto-1485233006-612x612.jpg" alt="Flask" width="200" />
                 </div>
                 <div className="gridunit">
                     <p><b>Carbon:</b> the origin of life</p>
-                    <img src="../dist/assets/images/pexels-pixabay-48884.jpg" alt="Flask" width="100" />
+                    <img src="../../dist/assets/images/pexels-pixabay-48884.jpg" alt="Flask" width="100" />
                 </div>
                 <div className="gridunit">
                     <p><b>Nitrogen:</b> the majority of our air</p>
-                    <img src="../dist/assets/images/pexels-алексей-вечерин-9544253.jpg" alt="Flask" width="100" />
+                    <img src="../../dist/assets/images/pexels-алексей-вечерин-9544253.jpg" alt="Flask" width="100" />
                 </div>
                 <div className="gridunit">
                     <p><b>Oxygen:</b> breathe!</p>
-                    <img src="../dist/assets/images/pexels-pixabay-158827.jpg" alt="Flask" width="200" />
+                    <img src="../../dist/assets/images/pexels-pixabay-158827.jpg" alt="Flask" width="200" />
                 </div>                
             </div>
             <div id="quote" className="quote-box bg-light text-dark"></div>
