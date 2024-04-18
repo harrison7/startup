@@ -2,8 +2,33 @@ import React from 'react';
 
 export function Play() {
   return (
-    <main className='container-fluid bg-secondary text-center'>
-      <div>play displayed here</div>
-    </main>
+    <div class="container">
+        <aside>
+            <h3>Leaderboard</h3>
+            <ol id="leaderboard-list"></ol>
+        </aside>
+        <main>
+            <h2>Click to get matter</h2>
+            <img src="dist/assets/images/pexels-ivan-samkov-9629708.jpg" alt="flask" width="200" id="flask" />
+            <p><button onclick="create()">Create</button></p>
+            <p><button onclick="upgrade(0)"><span id="Htxt">Increase Hydrogen</span></button><span id="HUp">10</span> <b class="element helium">He</b></p>
+            <p><button onclick="upgrade(1)"><span id="Hetxt">Increase Helium</span></button><span id="HeUp">10</span> <b class="element lithium">Li</b></p>
+            <p><button onclick="upgrade(2)"><span id="Litxt">Increase Lithium</span></button><span id="LiUp">10</span> <b class="element beryllium">Be</b></p>
+            <p><button onclick="upgrade(3)"><span id="Betxt">Increase Beryllium</span></button><span id="BeUp">10</span> <b class="element boron">B</b></p>
+            <p><button onclick="upgrade(4)"><span id="Btxt">Increase Boron</span></button><span id="BUp">10</span> <b class="element carbon">C</b></p>
+            <p><button onclick="upgrade(5)"><span id="Ctxt">Increase Carbon</span></button><span id="CUp">10</span> <b class="element nitrogen">N</b></p>
+            <p><button onclick="upgrade(6)"><span id="Ntxt">Increase Nitrogen</span></button><span id="NUp">10</span> <b class="element oxygen">O</b></p>
+        </main>
+        <div class="resources">
+            <p><b class="element hydrogen big">H</b><b> Hydrogen:</b> <span id="hydrogen">0</span></p>
+            <p><b class="element helium big">He</b><b> Helium:</b> <span id="helium">0</span></p>
+            <p><b class="element lithium big">Li</b><b> Lithium:</b> <span id="lithium">0</span></p>
+            <p><b class="element beryllium big">Be</b><b> Beryllium:</b> <span id="beryllium">0</span></p>
+            <p><b class="element boron big">B</b><b> Boron:</b> <span id="boron">0</span></p>
+            <p><b class="element carbon big">C</b><b> Carbon:</b> <span id="carbon">0</span></p>
+            <p><b class="element nitrogen big">N</b><b> Nitrogen:</b> <span id="nitrogen">0</span></p>
+            <p><b class="element oxygen big">O</b><b> Oxygen:</b> <span id="oxygen">0</span></p>
+        </div>
+    </div>
   );
 }

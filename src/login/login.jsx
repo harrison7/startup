@@ -106,11 +106,6 @@ export function Login({ userName, authState, onAuthChange }) {
                 />
                 )}
             </div>
-            <div id="playControls">
-                <div id="playerName"></div>
-                <button type="button" onClick={() => navigate('/play')}>Play</button>
-                <button type="button" onClick={() => logout()}>Logout</button>
-            </div>
         </main>
     </div>
   );
