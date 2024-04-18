@@ -87,3 +87,10 @@ For this deliverable I added WebSocket functionality, allowing updates from othe
 - **Frontend makes WebSocket connection** - done
 - **Data sent over WebSocket connection** - done
 - **WebSocket data displayed** - The high score leaderboard updates in real time
+
+## React deliverable
+
+- **Bundled and transpiled** - done!
+- **Components** - Login, game, and guide are all components.
+- **Router** - Routing between login game and guide components.
+- **Hooks** - done!
