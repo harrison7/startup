@@ -224,3 +224,149 @@ Port 80 is reserved for HTTP, 443 for HTTPS, 22 for SSH
 
 Standard HTTP headers: content-type, host, cookie
 
+URL format: <scheme>://<domain name>:<port>/<path>?<parameters>#<anchor>
+
+URI's include URL's and URN's. A URN is a unique identifier that doesn't represent location information
+
+Ports 0-1023 are standard protocols, 1024-49151 are for requesting entities, 49152-65535 
+
+# NOTES
+
+Internet
+IP address is used to connect to a server through the internet
+In the console, traceroute is used to find the hops in a connection
+The internet sends data through the TCP/IP model
+Application provides functionality like web browsing
+Transport allows moving connection information packets
+Internet establishes connections
+Link provides physical connections
+Web servers
+A web server knows how to receive internet requests and speak the HTML application protocol
+Each running web service is on a unique port, to support multiple running at the same time
+Microservices are a common practice. For example, if one instance can support one thousand users, you can run 1000 of those instances to support one million users.
+Serverless functionality allows writing of HTTP functions for the server that are completely removed from the architecture
+Domain names
+Each domain name can have multiple associated IP addresses in case of failure
+The governing board ICANN controls the available TLDs, like .com or .net
+Subdomains are like startup. or simon., where each has a different IP address
+You can use whois in the console to get more information on a domain name
+There are a few special DNS servers that all DNS servers reference:
+A: record that maps domain name to IP address
+CNAME: maps domain name to other domain name
+TTL: time to live for domain cache
+Fetch
+Fetch returns a promise
+
+
+Web services intro
+For the first time we are involving things outside of our browser and into the outside world
+We will make our own web server with endpoints
+URL
+Includes scheme, domain name, port, path, parameters, & anchor
+A URL is a URI. URI’s also include URN, which could be like a book’s isbn, info without location information
+Port
+When connecting to the internet, you need an IP address and a port number
+443 is the HTTPS port, 22 is the SSH port
+Simon is on port 3000, startup is on port 4000
+HTTP
+HTTP involves making requests and receiving responses, has headers and a body
+GET gets a resource, POST creates a new resource, PUT updates a resource, and DELETE deletes a resource. OPTIONS gets metadata about a resource.
+Status codes: 1xx success, 2xx info, 3xx redirect, 4xx client error, 5xx server error
+Cookies are a way for the server to track previous HTTP requests
+Current version is HTTP3 as of 2022
+Fetch
+The fetch API is a way for JS to make HTTP requests
+
+
+First successful application for deploying JavaScript outside of the browser
+Node.js runs Google’s V8 engine but in a console
+
+Express is a node package that makes it easy to set up frameworks for applications
+
+SOP and CORS
+Same Origin Policy requires that requests can only be viewed from users of the same domain
+Cross Origin Resource Sharing permits what can be shared so that the internet can actually function
+3rd party services must be tested, as some may be blocked by CORS
+
+A daemon keeps a program running after it shuts down
+
+MySQL supports relational queries for databases, but there are many other database options. We will use MongoDB
+Atlas is a service that helps manage MongoDB for us
+
+Each user is authenticated, and then their authentication token is stored on their device
+Authorizations usually use standard protocols to make things easier, SSO
+Consider AWS Cognito, or Google Firebase for an authentication service\
+
+WS: Created in 2011, built on top of HTTP protocols. Makes it so server doesn’t have to constantly ping or keep a connection open to receive updates
+
+
+Common terms
+Hacking - The process of making a system do something it's not supposed to do.
+Exploit - Code or input that takes advantage of a programming or configuration flaw.
+Attack Vector - The method that a hacker employs to penetrate and exploit a system.
+Attack Surface - The exposed parts of a system that an attacker can access. For example, open ports (22, 443, 80), service endpoints, or user accounts.
+Attack Payload - The actual code, or data, that a hacker delivers to a system in order to exploit it.
+Input sanitization - "Cleaning" any input of potentially malicious data.
+Black box testing - Testing an application without knowledge of the internals of the application.
+White box testing - Testing an application by with knowledge of the source code and internal infrastructure.
+Penetration Testing - Attempting to gain access to, or exploit, a system in ways that are not anticipated by the developers.
+Mitigation - The action taken to remove, or reduce, a threat.
+Motivation
+Disruption - By overloading a system, encrypting essential data, or deleting critical infrastructure, an attacker can destroy normal business operations. This may be an attempt at extortion, or simply be an attempt to punish a business that that attacker does not agree with.
+Data exfiltration - By privately extracting, or publicly exposing, a system's data, an attacker can embarrass the company, exploit insider information, sell the information to competitors, or leverage the information for additional attacks.
+Resource consumption - By taking control of a company's computing resources an attacker can use it for other purposes such as mining cryptocurrency, gathering customer information, or attacking other systems.
+Hacking techniques
+Injection: When an application interacts with a database on the backend, a programmer will often take user input and concatenate it directly into a search query. This allows a hacker can use a specially crafted query to make the database reveal hidden information or even delete the database.
+Cross-Site Scripting (XSS): A category of attacks where an attacker can make malicious code execute on a different user's browser. If successful, an attacker can turn a website that a user trusts, into one that can steal passwords and hijack a user's account.
+Denial of Service: This includes any attack where the main goal is to render any service inaccessible. This can be done by deleting a database using an SQL injection, by sending unexpected data to a service endpoint that causes the program to crash, or by simply making more requests than a server can handle.
+Credential Stuffing: People have a tendency to reuse passwords or variations of passwords on different websites. If a hacker has a user's credentials from a previous website attack, then there is a good chance that they can successfully use those credentials on a different website. A hacker can also try to brute force attack a system by trying every possible combination of password.
+Social engineering - Appealing to a human's desire to help, in order to gain unauthorized access or information.
+Preventions
+Sanitize input data - Always assume that any data you receive from outside your system will be used to exploit your system. Consider if the input data can be turned into an executable expression, or can overload computing, bandwidth, or storage resources.
+Logging - It is not possible to think of every way that your system can be exploited, but you can create an immutable log of requests that will expose when a system is being exploited. You can then trigger alerts, and periodically review the logs for unexpected activity.
+Traps - Create what appears to be valuable information and then trigger alarms when the data is accessed.
+Educate - Teach yourself, your users, and everyone you work with, to be security minded. Anyone who has access to your system should understand how to prevent physical, social, and software attacks.
+Reduce attack surfaces - Do not open access anymore than is necessary to properly provide your application. This includes what network ports are open, what account privileges are allowed, where you can access the system from, and what endpoints are available.
+Layered security - Do not assume that one safeguard is enough. Create multiple layers of security that each take different approaches. For example, secure your physical environment, secure your network, secure your server, secure your public network traffic, secure your private network traffic, encrypt your storage, separate your production systems from your development systems, put your payment information in a separate environment from your application environment. Do not allow data from one layer to move to other layers. For example, do not allow an employee to take data out of the production system.
+Least required access policy - Do not give any one user all the credentials necessary to control the entire system. Only give a user what access they need to do the work they are required to do.
+Safeguard credentials - Do not store credentials in accessible locations such as a public GitHub repository or a sticky note taped to a monitor. Automatically rotate credentials in order to limit the impact of an exposure. Only award credentials that are necessary to do a specific task.
+Public review - Do not rely on obscurity to keep your system safe. Assume instead that an attacker knows everything about your system and then make it difficult for anyone to exploit the system. If you can attack your system, then a hacker will be able to also. By soliciting public review and the work of external penetration testers, you will be able to discover and remove potential exploits.
+OWASP
+A01 Broken Access Control: when app doesn’t properly enforce permissions, like a user obtaining admin access from a certain link.
+A02 Cryptographic Failures: when private data isn’t properly encrypted
+A03 Injection: SQL commands are injected into database
+A04 Insecure Design: app doesn’t focus on security
+A05 Security Misconfiguration: using default passwords, not updating software, etc
+A06 Vulnerable and Outdated Components
+A07 Identification and Authentication Failures: when app doesn’t prevent attackers from impersonating users (like brute force password guessing)
+A08 Software and Data Integrity Failure: external software can compromise security
+A09 Security Logging and Monitoring Failures: logs can be accessed by attackers, who will delete them to cover up their presence
+A10 Server Side Request Forgery (SSRF): exploit internal server requests to reveal information
+
+
+Vue: combines HTML, CSS, and JavaScript into one file
+Svelte is the same but more compact
+In react, CSS is defined outside of the file, but HTML and JS are combined (JSX)
+A React component is a JS function that you can sprinkle with markup
+Their names must start with capital letters. Return statements must be wrapped with parentheses
+function Demo() {
+  const who = 'world';
+  return <b>Hello {who}</b>;
+}
+Will return Hello world
+Elements can be parameters, and attributes can be found with props.who
+
+
+TypeScript
+Adds static type checking to JavaScript
+VS Code will give you an error if you use an invalid type
+New enumeration shortcut:
+type AuthState = 'unknown' | 'authenticated' | 'unauthenticated';
+
+
+Performance monitoring
+Your application should load in less than a second to keep users
+Pay attention to following:
+Browser application latency: processing of user’s own browser/device
+Network latency: impacted by amount of data, bandwidth, and distance from server
+Service endpoint latency: impacted by amount of requests and processing time, should be <10 ms
